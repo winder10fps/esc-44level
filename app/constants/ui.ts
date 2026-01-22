@@ -1,0 +1,7 @@
+export const COLORS = {
+    BACKGROUND: "#0D0D0D",
+    SECTION_BACKGROUND: "#1A1A1A",
+    PRIMARY: "#FF3B30",
+    WHITE: "#FFFFFF",
+    GRAY: "#D3D3D3",
+}
