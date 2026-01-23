@@ -6,6 +6,10 @@
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "esc44level",
+    "fonts": [
+      "./assets/fonts/Roboto.ttf",
+      "./assets/fonts/RobotoCondensed.ttf"
+    ],
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
