@@ -8,11 +8,9 @@ type CustomTextProps = TextProps & {
 
 
 const CustomText: React.FC<CustomTextProps> = ({ style, variant, ...props }) => {
-    const isHeading = variant?.startsWith('h');
-
     return <Text
         style={[
-            isHeading ? styles.heading : styles.base,
+            styles.base,
             variant === 'primary' && styles.primary,
             variant === 'secondary' && styles.secondary,
             variant === 'big' && styles.big,
@@ -34,11 +32,6 @@ const styles = StyleSheet.create({
         fontFamily: FONT_FAMILIES.ROBOTO,
         fontWeight: 400,
     },
-    heading: {
-        color: COLORS.WHITE,
-        fontFamily: FONT_FAMILIES.ROBOTO_CONDENSED,
-        fontWeight: 700,
-    },
     primary: {
         fontSize: 16,
         lineHeight: 24
@@ -58,21 +51,25 @@ const styles = StyleSheet.create({
         letterSpacing: 0.2
     },
     h1: {
+        fontFamily: FONT_FAMILIES.ROBOTO_CONDENSED,
         fontSize: 32,
         lineHeight: 40,
         letterSpacing: -0.6
     },
     h2: {
+        fontFamily: FONT_FAMILIES.ROBOTO_CONDENSED,
         fontSize: 24,
         lineHeight: 32,
         letterSpacing: -0.2
     },
     h3: {
+        fontWeight: 700,
         fontSize: 20,
         lineHeight: 28,
         letterSpacing: -0.2
     },
     h4: {
+        fontWeight: 700,
         fontSize: 16,
         lineHeight: 24,
         letterSpacing: -0.1

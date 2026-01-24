@@ -1,9 +1,9 @@
 import { COLORS, FONT_FAMILIES } from "@/constants/ui";
-import { StyleSheet, TouchableOpacity } from "react-native"
+import { StyleSheet, TouchableOpacity, TouchableOpacityProps } from "react-native"
 import CustomText from "./CustomText";
 
 
-type CustomTextButtonProps = {
+type CustomTextButtonProps = TouchableOpacityProps & {
     label: string;
     size: 'default' | 'big';
     variant: 'primary' | 'secondary'
