@@ -60,7 +60,9 @@ const styles = StyleSheet.create({
         fontFamily: FONT_FAMILIES.ROBOTO_CONDENSED,
         fontSize: 24,
         lineHeight: 32,
-        letterSpacing: -0.2
+        letterSpacing: -0.2,
+        marginLeft: 8,
+        marginBottom: 24
     },
     h3: {
         fontWeight: 700,

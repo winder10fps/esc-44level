@@ -10,5 +10,5 @@ export const COLORS = {
 
 export const FONT_FAMILIES = {
     ROBOTO: "Roboto",
-    ROBOTO_CONDENSED: 'Roboto-Condensed',
+    ROBOTO_CONDENSED: 'Roboto-Condensed'
 }

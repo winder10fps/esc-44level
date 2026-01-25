@@ -1,29 +1,19 @@
 import { ScrollView, StatusBar, StyleSheet } from "react-native";
 import { COLORS } from "../constants/ui";
 import { SafeAreaView } from 'react-native-safe-area-context';
-import CustomTextButton from "@/components/CustomTextButton";
 import TournamentSection from "@/sections/HomeScreenSections/TournamentSection";
-import { useRouter } from "expo-router";
+import ServiceSection from "@/sections/HomeScreenSections/ServiceSection";
+import ContactsSection from "@/sections/HomeScreenSections/ContactsSection";
 
 
 const Index = () => {
-  const router = useRouter();
-
-  const goBooking = () => {
-    router.push('./screens/BookingScreen');
-  }
-
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle={"light-content"} />
-      <ScrollView style={styles.content}>
-        <CustomTextButton
-          size="big"
-          variant="primary"
-          label='Забронировать ПК'
-          onPress={goBooking} />
+      <ScrollView style={styles.content}> 
         <TournamentSection />
-        <TournamentSection />
+        <ServiceSection />
+        <ContactsSection />
       </ScrollView>
     </SafeAreaView>
   );

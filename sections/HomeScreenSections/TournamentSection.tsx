@@ -83,15 +83,7 @@ const TournamentSection = () => {
 
     return (
         <View style={styles.sectionContainer}>
-            <CustomText
-                variant="h2"
-                style={{
-                    marginLeft: 8,
-                    marginBottom: 24
-                }}
-            >
-                Ближайшие турниры
-            </CustomText>
+            <CustomText variant="h2">Ближайшие турниры</CustomText>
             {tournaments.length === 0 ? (
                 <View>
                     <CustomText variant="big" style={styles.tournamentContainer}>Нет турниров</CustomText>

@@ -10,13 +10,14 @@ type CustomTextButtonProps = TouchableOpacityProps & {
 }
 
 
-const CustomTextButton: React.FC<CustomTextButtonProps> = ({ label, size, variant, ...props }) => {
+const CustomTextButton: React.FC<CustomTextButtonProps> = ({ style, label, size, variant, ...props }) => {
     return (
         <TouchableOpacity
             style={[
                 styles.base,
                 variant === 'primary' && styles.primary,
-                variant === 'secondary' && styles.secondary
+                variant === 'secondary' && styles.secondary,
+                style
             ]}
             {...props}
         >

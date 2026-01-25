@@ -1,9 +1,21 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
 import { COLORS, FONT_FAMILIES } from "../constants/ui";
+import { useEffect } from "react";
+import * as Font from 'expo-font';
 
 
 export default function RootLayout() {
+  useEffect(() => {
+    async function loadFonts() {
+      await Font.loadAsync({
+        'Roboto': require('@/assets/fonts/Roboto.ttf'),
+        'Roboto-Condensed': require('@/assets/fonts/RobotoCondensed.ttf'),
+      });
+    }
+    loadFonts();
+  }, []);
+
   return <Tabs
     screenOptions={{
       tabBarActiveTintColor: COLORS.PRIMARY,
