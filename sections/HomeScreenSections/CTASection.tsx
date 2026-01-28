@@ -2,14 +2,14 @@ import CustomText from "@/components/CustomText";
 import CustomTextButton from "@/components/CustomTextButton";
 import SemiCircleProgress from "@/components/SemiCircleProgress";
 import { COLORS, FONT_FAMILIES } from "@/constants/ui";
-import { useRouter } from "expo-router";
+import { useChangePage } from "@/functions/navigation";
 import { StyleSheet, Text, View } from "react-native";
 
 const CTASection = () => {
-    const router = useRouter();
+    const { changePageTo } = useChangePage();
 
     const goBooking = () => {
-        router.push('./screens/BookingScreen');
+        changePageTo('./screens/BookingScreen')
     }
 
     const level = 1;

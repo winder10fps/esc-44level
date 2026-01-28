@@ -1,6 +1,7 @@
 import CustomText from "@/components/CustomText"
 import CustomTextButton from "@/components/CustomTextButton"
 import { COLORS } from "@/constants/ui"
+import { useChangePage } from "@/functions/navigation"
 import CarIcon from "@/icons/CarIcon"
 import CleanerIcon from "@/icons/CleanerIcon"
 import ComputerIcon from "@/icons/ComputerIcon"
@@ -9,14 +10,14 @@ import GamepadIcon from "@/icons/GamepadIcon"
 import LinesIcon from "@/icons/LinesIcon"
 import PlayStationIcon from "@/icons/PlayStationIcon"
 import VRIcon from "@/icons/VRIcon"
-import { useRouter } from "expo-router"
 import { StyleSheet, View } from "react-native"
 
+
 const ServiceSection = () => {
-    const router = useRouter();
+    const { changePageTo } = useChangePage();
 
     const goCatalog = () => {
-        router.push('./screens/CatalogScreen');
+        changePageTo('./screens/CatalogScreen')
     }
 
     return (

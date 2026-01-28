@@ -50,7 +50,8 @@ const styles = StyleSheet.create({
         borderColor: COLORS.WHITE,
     },
     buttonFontBase: {
-        fontFamily: FONT_FAMILIES.ROBOTO_CONDENSED
+        fontFamily: FONT_FAMILIES.ROBOTO_CONDENSED,
+        textAlign: 'center'
     },
     default: {
         fontSize: 16

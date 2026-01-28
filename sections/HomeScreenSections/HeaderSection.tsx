@@ -1,7 +1,7 @@
 import CustomText from "@/components/CustomText";
+import { useChangePage } from "@/functions/navigation";
 import BellIcon from "@/icons/BellIcon";
 import CallingPhoneIcon from "@/icons/CallingPhoneIcon";
-import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { Image, Linking, StyleSheet, TouchableOpacity, View } from "react-native";
 
@@ -13,16 +13,17 @@ interface User {
 
 
 const HeaderSection = () => {
-    const router = useRouter();
     const number = '+7 915 905 20 08';
 
+    const { changePageTo } = useChangePage();
+
     const goProfile = () => {
-        router.push('./screens/ProfileScreen');
+        changePageTo('./screens/ProfileScreen')
     }
 
-    const handleCall = async () => {
+    const handleCall = () => {
         const url = `tel:${number}`;
-        await Linking.openURL(url);
+        Linking.openURL(url);
     }
 
     const handleNotifs = () => {

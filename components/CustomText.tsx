@@ -7,22 +7,27 @@ type CustomTextProps = TextProps & {
 };
 
 
-const CustomText: React.FC<CustomTextProps> = ({ style, variant, ...props }) => {
-    return <Text
-        style={[
-            styles.base,
-            variant === 'primary' && styles.primary,
-            variant === 'secondary' && styles.secondary,
-            variant === 'big' && styles.big,
-            variant === 'micro' && styles.micro,
-            variant === 'h1' && styles.h1,
-            variant === 'h2' && styles.h2,
-            variant === 'h3' && styles.h3,
-            variant === 'h4' && styles.h4,
-            style
-        ]}
-        {...props}
-    />
+const CustomText: React.FC<CustomTextProps> = ({ style, variant, children, ...props }) => {
+    return (
+        <Text
+            style={[
+                styles.base,
+                variant === 'primary' && styles.primary,
+                variant === 'secondary' && styles.secondary,
+                variant === 'big' && styles.big,
+                variant === 'micro' && styles.micro,
+                variant === 'h1' && styles.h1,
+                variant === 'h2' && styles.h2,
+                variant === 'h3' && styles.h3,
+                variant === 'h4' && styles.h4,
+                style
+            ]}
+            {...props}
+        >
+            {children}
+            {'\u200B'}
+        </Text>
+    )
 };
 
 

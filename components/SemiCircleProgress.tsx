@@ -24,7 +24,6 @@ const SemiCircleMeter: React.FC<SemiCircleMeterProps> = ({
         throw new Error("Передать в progress bar правильные значения!");
     }
 
-
     // Внутренний радиус (центр линии)
     const innerRadius = radius - strokeWidth / 2;
     const diameter = radius * 2;
@@ -59,7 +58,7 @@ const SemiCircleMeter: React.FC<SemiCircleMeterProps> = ({
                 <Path
                     d={`M ${startX} ${startY} 
                         A ${innerRadius} ${innerRadius} 0 0 1 ${endBackgroundX} ${endBackgroundY}`}
-                    stroke={COLORS.GRAY || '#e0e0e0'}
+                    stroke={COLORS.CARD_BACKGROUND}
                     strokeWidth={strokeWidth}
                     fill="transparent"
                     strokeLinecap="round"
