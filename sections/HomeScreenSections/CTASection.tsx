@@ -9,7 +9,7 @@ const CTASection = () => {
     const { changePageTo } = useChangePage();
 
     const goBooking = () => {
-        changePageTo('./screens/BookingScreen')
+        changePageTo('./BookingScreen')
     }
 
     const level = 1;

@@ -1,7 +1,7 @@
-import { StyleSheet, TouchableOpacity, TouchableOpacityProps } from "react-native"
-import CustomText from "./CustomText";
+import ArrowIcon from "@/assets/icons/ArrowIcon";
 import { COLORS } from "@/constants/ui";
-import ArrowIcon from "@/icons/ArrowIcon";
+import { StyleSheet, TouchableOpacity, TouchableOpacityProps } from "react-native";
+import CustomText from "./CustomText";
 
 
 type LinkInProfileSectionProps = TouchableOpacityProps & {

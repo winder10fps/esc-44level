@@ -1,10 +1,10 @@
+import AddressIcon from "@/assets/icons/AddressIcon";
+import ClockIcon from "@/assets/icons/ClockIcon";
+import PhoneIcon from "@/assets/icons/PhoneIcon";
+import VKIcon from "@/assets/icons/VKIcon";
 import CustomText from "@/components/CustomText";
 import { COLORS } from "@/constants/ui";
-import AddressIcon from "@/icons/AddressIcon";
-import ClockIcon from "@/icons/ClockIcon";
-import PhoneIcon from "@/icons/PhoneIcon";
-import VKIcon from "@/icons/VKIcon";
-import { Linking, StyleSheet, TouchableOpacity, View } from "react-native"
+import { Linking, StyleSheet, TouchableOpacity, View } from "react-native";
 
 const ContactsSection = () => {
     const number = '+7 915 905 20 08';

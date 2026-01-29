@@ -1,15 +1,15 @@
+import CarIcon from "@/assets/icons/CarIcon"
+import CleanerIcon from "@/assets/icons/CleanerIcon"
+import ComputerIcon from "@/assets/icons/ComputerIcon"
+import FoodIcon from "@/assets/icons/FoodIcon"
+import GamepadIcon from "@/assets/icons/GamepadIcon"
+import LinesIcon from "@/assets/icons/LinesIcon"
+import PlayStationIcon from "@/assets/icons/PlayStationIcon"
+import VRIcon from "@/assets/icons/VRIcon"
 import CustomText from "@/components/CustomText"
 import CustomTextButton from "@/components/CustomTextButton"
 import { COLORS } from "@/constants/ui"
 import { useChangePage } from "@/functions/navigation"
-import CarIcon from "@/icons/CarIcon"
-import CleanerIcon from "@/icons/CleanerIcon"
-import ComputerIcon from "@/icons/ComputerIcon"
-import FoodIcon from "@/icons/FoodIcon"
-import GamepadIcon from "@/icons/GamepadIcon"
-import LinesIcon from "@/icons/LinesIcon"
-import PlayStationIcon from "@/icons/PlayStationIcon"
-import VRIcon from "@/icons/VRIcon"
 import { StyleSheet, View } from "react-native"
 
 
@@ -17,7 +17,7 @@ const ServiceSection = () => {
     const { changePageTo } = useChangePage();
 
     const goCatalog = () => {
-        changePageTo('./screens/CatalogScreen')
+        changePageTo('./CatalogScreen')
     }
 
     return (

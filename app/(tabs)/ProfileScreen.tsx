@@ -10,7 +10,7 @@ const Profile = () => {
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar barStyle={"light-content"} />
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false}>
                 <UserSection />
                 <InfoSection />
             </ScrollView>

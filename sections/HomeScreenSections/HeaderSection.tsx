@@ -1,7 +1,8 @@
+import BellIcon from "@/assets/icons/BellIcon";
+import CallingPhoneIcon from "@/assets/icons/CallingPhoneIcon";
 import CustomText from "@/components/CustomText";
 import { useChangePage } from "@/functions/navigation";
-import BellIcon from "@/icons/BellIcon";
-import CallingPhoneIcon from "@/icons/CallingPhoneIcon";
+import { router } from "expo-router";
 import { useEffect, useState } from "react";
 import { Image, Linking, StyleSheet, TouchableOpacity, View } from "react-native";
 
@@ -18,7 +19,7 @@ const HeaderSection = () => {
     const { changePageTo } = useChangePage();
 
     const goProfile = () => {
-        changePageTo('./screens/ProfileScreen')
+        changePageTo('./ProfileScreen')
     }
 
     const handleCall = () => {
@@ -27,7 +28,7 @@ const HeaderSection = () => {
     }
 
     const handleNotifs = () => {
-        // !
+        router.push('/screens/NotifScreen' as any);
     }
 
     const [user, setUser] = useState<User | null>(null);

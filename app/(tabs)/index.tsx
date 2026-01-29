@@ -1,5 +1,5 @@
 import { Image, ScrollView, StatusBar, StyleSheet, View } from "react-native";
-import { COLORS } from "../constants/ui";
+import { COLORS } from "../../constants/ui";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import TournamentSection from "@/sections/HomeScreenSections/TournamentSection";
 import ServiceSection from "@/sections/HomeScreenSections/ServiceSection";
@@ -13,12 +13,12 @@ const Index = () => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle={"light-content"} />
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.forBackgroundImage}>
           <HeaderSection />
           <CTASection />
           <ImagesSection />
-          <Image source={require('@/assets/images/homePageBackground.png')} style={styles.backgroundImage}/>
+          <Image source={require('@/assets/images/homePageBackground.png')} style={styles.backgroundImage} />
         </View>
         <TournamentSection />
         <ServiceSection />
