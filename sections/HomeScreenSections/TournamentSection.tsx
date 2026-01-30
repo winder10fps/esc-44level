@@ -1,6 +1,7 @@
 import CustomText from "@/components/CustomText";
 import CustomTextButton from "@/components/CustomTextButton";
 import { COLORS } from "@/constants/ui";
+import { router } from "expo-router";
 import { useEffect, useState } from "react";
 import { ListRenderItem, View, FlatList, StyleSheet } from "react-native";
 
@@ -28,7 +29,7 @@ const TournamentSection = () => {
 
     const fetchTournaments = async () => {
         // const response = await fetch('https://сервер.com/api/tournaments/upcoming');
-        // const data = await response.json();ф
+        // const data = await response.json();
         const data = {
             status: "success",
             data: [
@@ -77,7 +78,12 @@ const TournamentSection = () => {
             >
                 {item.caption}
             </CustomText>
-            <CustomTextButton label="Подробнее" size="default" variant="secondary" />
+            <CustomTextButton
+                label="Подробнее"
+                size="default"
+                variant="secondary"
+                onPress={() => { router.push('/screens/TournamentsScreen') }}
+            />
         </View>
     )
 

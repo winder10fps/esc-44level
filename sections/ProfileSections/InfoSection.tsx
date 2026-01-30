@@ -1,18 +1,19 @@
 import LinkInProfileSection from "@/components/LinkInProfileSection";
 import { COLORS } from "@/constants/ui";
+import { router } from "expo-router";
 import { StyleSheet, View } from "react-native"
 
 
 const InfoSection = () => {
     return (
         <View style={styles.sectionConstainer}>
-            <LinkInProfileSection text="О клубе" />
-            <LinkInProfileSection text="Турниры" />
-            <LinkInProfileSection text="Уведомления" />
-            <LinkInProfileSection text="Частые вопросы" />
-            <LinkInProfileSection text="Конфиденциальность" />
-            <LinkInProfileSection text="Польз. соглашение"/>
-            <LinkInProfileSection text="Выйти" accent/>
+            <LinkInProfileSection text="О клубе" onPress={() => router.push('/screens/AboutClubScreen')}/>
+            <LinkInProfileSection text="Турниры" onPress={() => router.push('/screens/TournamentsScreen')}/>
+            <LinkInProfileSection text="Уведомления" onPress={() => router.push('/screens/NotifScreen')} />
+            <LinkInProfileSection text="Частые вопросы" onPress={() => router.push('/screens/FAQScreen')}/>
+            <LinkInProfileSection text="Конфиденциальность" onPress={() => router.push('/screens/PrivacyScreen')}/>
+            <LinkInProfileSection text="Польз. соглашение" onPress={() => router.push('/screens/UserAgreementScreen')}/>
+            <LinkInProfileSection text="Выйти" accent />
         </View>
     )
 }

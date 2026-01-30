@@ -1,7 +1,8 @@
 import CustomText from "@/components/CustomText";
+import FullScreenImageModal from "@/components/FullScreenImageModal";
 import { COLORS } from "@/constants/ui";
 import { useEffect, useState } from "react";
-import { Image, StyleSheet, View } from "react-native"
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native"
 
 
 interface User {
@@ -37,10 +38,19 @@ const UserSection = () => {
         fetchUser();
     }, []);
 
+    const [avatarFullScreen, setAvatarFullScreen] = useState(false)
+
     return (
         <View style={styles.sectionContainer}>
             <View style={styles.topElements}>
-                <Image source={{ uri: user?.avatar }} style={styles.avatar} />
+                <TouchableOpacity onPress={() => setAvatarFullScreen(true)}>
+                    <Image source={{uri: user?.avatar}} style={styles.avatar} />
+                </TouchableOpacity>
+                <FullScreenImageModal
+                    visible={avatarFullScreen}
+                    imageSource={{ uri: user?.avatar }}
+                    onClose={() => { setAvatarFullScreen(false) }}
+                />
                 <CustomText style={styles.userName}>{user?.name}</CustomText>
                 <CustomText style={styles.grayText} variant="secondary">#P{user?.id}</CustomText>
             </View>

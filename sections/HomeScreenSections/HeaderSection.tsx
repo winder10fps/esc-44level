@@ -28,7 +28,7 @@ const HeaderSection = () => {
     }
 
     const handleNotifs = () => {
-        router.push('/screens/NotifScreen' as any);
+        router.push('/screens/NotifScreen');
     }
 
     const [user, setUser] = useState<User | null>(null);

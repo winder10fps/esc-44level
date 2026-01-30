@@ -1,9 +1,9 @@
 import { StyleSheet } from 'react-native';
 import StackScreen from '@/components/StackScreen';
 
-export default function NotifScreen() {
+export default function TournamentsScreen() {
     return (
-        <StackScreen title='Уведомления' style={styles}>
+        <StackScreen title='Турниры' style={styles}>
 
         </StackScreen>
     );

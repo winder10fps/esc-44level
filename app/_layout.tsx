@@ -5,7 +5,9 @@ import * as Font from 'expo-font';
 import { View } from "react-native";
 import { COLORS } from "@/constants/ui";
 
+
 SplashScreen.preventAutoHideAsync();
+
 
 export default function RootLayout() {
     const [fontsLoaded, fontError] = Font.useFonts({
@@ -33,7 +35,12 @@ export default function RootLayout() {
                 }}
             >
                 <Stack.Screen name="(tabs)" />
+                <Stack.Screen name="screens/AboutClubScreen" />
+                <Stack.Screen name="screens/TournamentsScreen" />
                 <Stack.Screen name="screens/NotifScreen" />
+                <Stack.Screen name="screens/FAQScreen" />
+                <Stack.Screen name="screens/PrivacyScreen" />
+                <Stack.Screen name="screens/UserAgreementScreen" />
             </Stack>
         </View>
     );
