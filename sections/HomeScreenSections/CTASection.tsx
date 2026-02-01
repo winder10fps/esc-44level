@@ -1,6 +1,7 @@
 import CustomText from "@/components/CustomText";
 import CustomTextButton from "@/components/CustomTextButton";
 import SemiCircleProgress from "@/components/SemiCircleProgress";
+import { mockUser } from "@/constants/fromServer";
 import { COLORS, FONT_FAMILIES } from "@/constants/ui";
 import { useChangePage } from "@/functions/navigation";
 import { StyleSheet, Text, View } from "react-native";
@@ -12,19 +13,16 @@ const CTASection = () => {
         changePageTo('./BookingScreen')
     }
 
-    const level = 1;
-    const levelProgress = 35;
-
     return (
         <View style={styles.sectionContainer}>
             <View style={styles.infoContainer}>
                 <SemiCircleProgress
-                    progress={levelProgress}
+                    progress={mockUser.levelProgress}
                     radius={87}
                     strokeWidth={6}
                     style={styles.progressBar}
                 />
-                <Text style={[styles.levelLabel]}>{level}</Text>
+                <Text style={[styles.levelLabel]}>{mockUser.level}</Text>
                 <CustomText variant='secondary'>Твой Level</CustomText>
                 <CustomText variant='primary' style={{ marginTop: 16 }}>Больше играешь — больше Level</CustomText>
             </View>

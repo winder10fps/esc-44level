@@ -1,16 +1,10 @@
 import BellIcon from "@/assets/icons/BellIcon";
 import CallingPhoneIcon from "@/assets/icons/CallingPhoneIcon";
 import CustomText from "@/components/CustomText";
+import { mockUser } from "@/constants/fromServer";
 import { useChangePage } from "@/functions/navigation";
 import { router } from "expo-router";
-import { useEffect, useState } from "react";
 import { Image, Linking, StyleSheet, TouchableOpacity, View } from "react-native";
-
-
-interface User {
-    name: string;
-    avatar: string;
-}
 
 
 const HeaderSection = () => {
@@ -31,36 +25,16 @@ const HeaderSection = () => {
         router.push('/screens/NotifScreen');
     }
 
-    const [user, setUser] = useState<User | null>(null);
-    // ! Сделать обработку загрузки
-
-    useEffect(() => {
-        const fetchUser = async () => {
-            // Имитация задержки сети
-            // await new Promise(resolve => setTimeout(resolve, 800));
-
-            // Моковый объект с сервера
-            const mockUser: User = {
-                name: "Иван",
-                avatar: "https://api.dicebear.com/7.x/avataaars/png?seed=Ivan",
-            };
-
-            setUser(mockUser);
-        };
-
-        fetchUser();
-    }, []);
-
     return (
         <View style={styles.sectionContainer}>
             <TouchableOpacity style={styles.profileInfo} onPress={goProfile}>
                 <Image
                     source={{
-                        uri: user?.avatar
+                        uri: mockUser.avatar
                     }}
                     style={styles.avatar}
                 />
-                <CustomText variant="h3">{user?.name}</CustomText>
+                <CustomText variant="h3">{mockUser.name}</CustomText>
             </TouchableOpacity>
             <View style={styles.buttons}>
                 <TouchableOpacity onPress={handleNotifs}>

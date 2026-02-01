@@ -1,67 +1,14 @@
 import CustomText from "@/components/CustomText";
 import CustomTextButton from "@/components/CustomTextButton";
+import { clubInfo, Tournament } from "@/constants/fromServer";
 import { COLORS } from "@/constants/ui";
 import { router } from "expo-router";
-import { useEffect, useState } from "react";
 import { ListRenderItem, View, FlatList, StyleSheet } from "react-native";
 
 
-interface Tournament {
-    id: number;
-    name: string;
-    game: string;
-    date: string;
-    time: string;
-    caption: string;
-    prize_pool: string;
-    max_teams?: number;
-    registered_teams?: number;
-    status: string;
-}
-
-
 const TournamentSection = () => {
-    const [tournaments, SetTournaments] = useState<Tournament[]>([]);
 
-    useEffect(() => {
-        fetchTournaments();
-    }, [])
-
-    const fetchTournaments = async () => {
-        // const response = await fetch('https://сервер.com/api/tournaments/upcoming');
-        // const data = await response.json();
-        const data = {
-            status: "success",
-            data: [
-                {
-                    id: 1,
-                    name: "Киберспринт: Valorant Open Cup",
-                    game: "Valorant",
-                    date: "2024-03-15",
-                    time: "18:00",
-                    caption: "турнир турнир турнир турнир турнир турнир турнир турниртурниртурниртурниртурниртурнир",
-                    prize_pool: "50 000 ₽",
-                    max_teams: 16,
-                    registered_teams: 12,
-                    status: "registration_open",
-                },
-                {
-                    id: 2,
-                    name: "Dota 2 Battle Royal",
-                    game: "Dota 2",
-                    date: "2024-03-20",
-                    time: "17:30",
-                    caption: "турнир турнир турнир турнир турнир турнир турнир турниртурниртурниртурниртурниртурнир",
-                    prize_pool: "75 000 ₽",
-                    max_teams: 8,
-                    registered_teams: 8,
-                    status: "registration_closed",
-                }
-            ],
-            timestamp: "2024-03-10T14:30:00Z"
-        };
-        SetTournaments(data.data)
-    }
+    const futureTournaments = clubInfo['tournaments'].future
 
     const renderTournament: ListRenderItem<Tournament> = ({ item }) => (
         <View style={styles.tournamentContainer}>
@@ -90,13 +37,13 @@ const TournamentSection = () => {
     return (
         <View style={styles.sectionContainer}>
             <CustomText variant="h2">Ближайшие турниры</CustomText>
-            {tournaments.length === 0 ? (
+            {futureTournaments.length === 0 ? (
                 <View>
                     <CustomText variant="big" style={styles.tournamentContainer}>Нет турниров</CustomText>
                 </View>
             ) : (
                 <FlatList
-                    data={tournaments}
+                    data={futureTournaments}
                     renderItem={renderTournament}
                     keyExtractor={(item) => item.id.toString()}
                     scrollEnabled={false}

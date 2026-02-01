@@ -1,42 +1,12 @@
 import CustomText from "@/components/CustomText";
 import FullScreenImageModal from "@/components/FullScreenImageModal";
+import { mockUser } from "@/constants/fromServer";
 import { COLORS } from "@/constants/ui";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native"
 
 
-interface User {
-    id: number;
-    name: string;
-    avatar: string;
-    level: number;
-    hours: number;
-}
-
-
 const UserSection = () => {
-    const [user, setUser] = useState<User | null>(null);
-    // ! Сделать обработку загрузки
-
-    useEffect(() => {
-        const fetchUser = async () => {
-            // Имитация задержки сети
-            // await new Promise(resolve => setTimeout(resolve, 800));
-
-            // Моковый объект с сервера
-            const mockUser: User = {
-                id: 123,
-                name: "Иван",
-                avatar: "https://api.dicebear.com/7.x/avataaars/png?seed=Ivan",
-                level: 1,
-                hours: 45
-            };
-
-            setUser(mockUser);
-        };
-
-        fetchUser();
-    }, []);
 
     const [avatarFullScreen, setAvatarFullScreen] = useState(false)
 
@@ -44,23 +14,23 @@ const UserSection = () => {
         <View style={styles.sectionContainer}>
             <View style={styles.topElements}>
                 <TouchableOpacity onPress={() => setAvatarFullScreen(true)}>
-                    <Image source={{uri: user?.avatar}} style={styles.avatar} />
+                    <Image source={{ uri: mockUser.avatar }} style={styles.avatar} />
                 </TouchableOpacity>
                 <FullScreenImageModal
                     visible={avatarFullScreen}
-                    imageSource={{ uri: user?.avatar }}
+                    imageSource={{ uri: mockUser.avatar }}
                     onClose={() => { setAvatarFullScreen(false) }}
                 />
-                <CustomText style={styles.userName}>{user?.name}</CustomText>
-                <CustomText style={styles.grayText} variant="secondary">#P{user?.id}</CustomText>
+                <CustomText style={styles.userName}>{mockUser.name}</CustomText>
+                <CustomText style={styles.grayText} variant="secondary">#P{mockUser.id}</CustomText>
             </View>
             <View style={styles.bottomElements}>
                 <View style={styles.elementContainer}>
-                    <CustomText style={styles.elementNumber}>{user?.level}</CustomText>
+                    <CustomText style={styles.elementNumber}>{mockUser.level}</CustomText>
                     <CustomText style={styles.grayText} variant="primary">Level</CustomText>
                 </View>
                 <View style={styles.elementContainer}>
-                    <CustomText style={styles.elementNumber}>{user?.hours}</CustomText>
+                    <CustomText style={styles.elementNumber}>{mockUser.hours}</CustomText>
                     <CustomText style={styles.grayText} variant="primary">Часов с нами</CustomText>
                 </View>
             </View>

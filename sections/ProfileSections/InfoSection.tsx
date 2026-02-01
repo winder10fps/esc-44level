@@ -5,15 +5,19 @@ import { StyleSheet, View } from "react-native"
 
 
 const InfoSection = () => {
+    const onLogout = () => {
+
+    }
+    
     return (
         <View style={styles.sectionConstainer}>
-            <LinkInProfileSection text="О клубе" onPress={() => router.push('/screens/AboutClubScreen')}/>
-            <LinkInProfileSection text="Турниры" onPress={() => router.push('/screens/TournamentsScreen')}/>
+            <LinkInProfileSection text="О клубе" onPress={() => router.push('/screens/AboutClubScreen')} />
+            <LinkInProfileSection text="Турниры" onPress={() => router.push('/screens/TournamentsScreen')} />
             <LinkInProfileSection text="Уведомления" onPress={() => router.push('/screens/NotifScreen')} />
-            <LinkInProfileSection text="Частые вопросы" onPress={() => router.push('/screens/FAQScreen')}/>
-            <LinkInProfileSection text="Конфиденциальность" onPress={() => router.push('/screens/PrivacyScreen')}/>
-            <LinkInProfileSection text="Польз. соглашение" onPress={() => router.push('/screens/UserAgreementScreen')}/>
-            <LinkInProfileSection text="Выйти" accent />
+            <LinkInProfileSection text="Частые вопросы" onPress={() => router.push('/screens/FAQScreen')} />
+            <LinkInProfileSection text="Конфиденциальность" onPress={() => router.push('/screens/PrivacyScreen')} />
+            <LinkInProfileSection text="Польз. соглашение" onPress={() => router.push('/screens/UserAgreementScreen')} />
+            <LinkInProfileSection text="Выйти" accent onPress={onLogout}/>
         </View>
     )
 }
