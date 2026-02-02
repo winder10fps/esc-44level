@@ -6,7 +6,6 @@ import { StyleSheet, View } from "react-native"
 
 const InfoSection = () => {
     const onLogout = () => {
-
     }
     
     return (

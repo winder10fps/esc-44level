@@ -1,5 +1,5 @@
 // личная инфа каждого
-export const isAuth = false;
+export let isAuth = false;
 
 export interface User {
     id: number;

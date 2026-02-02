@@ -6,7 +6,7 @@ import CustomText from "./CustomText";
 type CustomTextButtonProps = TouchableOpacityProps & {
     label: string;
     size: 'default' | 'big';
-    variant: 'primary' | 'secondary'
+    variant: 'primary' | 'secondary' | 'onlyText'
 }
 
 
@@ -17,6 +17,7 @@ const CustomTextButton: React.FC<CustomTextButtonProps> = ({ style, label, size,
                 styles.base,
                 variant === 'primary' && styles.primary,
                 variant === 'secondary' && styles.secondary,
+                variant === 'onlyText' && styles.onlyText,
                 style
             ]}
             {...props}
@@ -58,6 +59,10 @@ const styles = StyleSheet.create({
     },
     big: {
         fontSize: 20
+    },
+    onlyText: {
+        paddingHorizontal: 0,
+        paddingVertical: 0,
     }
 })
 
