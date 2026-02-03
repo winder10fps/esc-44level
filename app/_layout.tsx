@@ -1,9 +1,9 @@
+import { COLORS } from "@/constants/ui";
+import { isAuth } from "@/constants/withServer";
+import * as Font from 'expo-font';
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
-import * as Font from 'expo-font';
 import { View } from "react-native";
-import { COLORS } from "@/constants/ui";
-import { isAuth } from "@/constants/fromServer";
 
 
 SplashScreen.preventAutoHideAsync();
@@ -47,7 +47,7 @@ export default function RootLayout() {
                 <Stack screenOptions={{
                     headerShown: false,
                     animation: 'fade',
-                    animationDuration: 100,
+                    animationDuration: 100
                 }}
                 >
                     <Stack.Screen name="(auth)/LoginScreen" />

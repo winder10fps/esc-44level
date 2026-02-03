@@ -6,11 +6,27 @@ import CustomText from "./CustomText";
 type CustomTextButtonProps = TouchableOpacityProps & {
     label: string;
     size: 'default' | 'big';
-    variant: 'primary' | 'secondary' | 'onlyText'
+    variant: 'primary' | 'secondary' | 'onlyText';
+    disabled?: boolean;
 }
 
 
-const CustomTextButton: React.FC<CustomTextButtonProps> = ({ style, label, size, variant, ...props }) => {
+const CustomTextButton: React.FC<CustomTextButtonProps> = ({
+    style,
+    label,
+    size,
+    variant,
+    disabled = false,
+    onPress,
+    ...props
+}) => {
+
+    const handlePress = (event: any) => {
+        if (!disabled && onPress) {
+            onPress(event);
+        }
+    }
+
     return (
         <TouchableOpacity
             style={[
@@ -18,8 +34,11 @@ const CustomTextButton: React.FC<CustomTextButtonProps> = ({ style, label, size,
                 variant === 'primary' && styles.primary,
                 variant === 'secondary' && styles.secondary,
                 variant === 'onlyText' && styles.onlyText,
+                disabled && styles.disabled,
                 style
             ]}
+            onPress={handlePress}
+            activeOpacity={disabled ? 0.5 : 0.2}
             {...props}
         >
             <CustomText
@@ -63,6 +82,9 @@ const styles = StyleSheet.create({
     onlyText: {
         paddingHorizontal: 0,
         paddingVertical: 0,
+    },
+    disabled: {
+        opacity: 0.5
     }
 })
 

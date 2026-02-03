@@ -1,9 +1,9 @@
 import CustomText from "@/components/CustomText";
 import CustomTextButton from "@/components/CustomTextButton";
-import { clubInfo, Tournament } from "@/constants/fromServer";
 import { COLORS } from "@/constants/ui";
+import { clubInfo, Tournament } from "@/constants/withServer";
 import { router } from "expo-router";
-import { ListRenderItem, View, FlatList, StyleSheet } from "react-native";
+import { FlatList, ListRenderItem, StyleSheet, View } from "react-native";
 
 
 const TournamentSection = () => {

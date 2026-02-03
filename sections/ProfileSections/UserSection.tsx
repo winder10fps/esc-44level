@@ -1,9 +1,9 @@
 import CustomText from "@/components/CustomText";
 import FullScreenImageModal from "@/components/FullScreenImageModal";
-import { mockUser } from "@/constants/fromServer";
 import { COLORS } from "@/constants/ui";
+import { mockUser } from "@/constants/withServer";
 import { useState } from "react";
-import { Image, StyleSheet, TouchableOpacity, View } from "react-native"
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
 
 const UserSection = () => {
