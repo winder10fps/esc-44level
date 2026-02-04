@@ -23,6 +23,7 @@ const AuthScreen: React.FC<AuthScreenProps> = ({ back, children }) => {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} >
             <View style={styles.screenContainer}>
                 <Image source={require('@/assets/images/reg-bg.jpg')} style={styles.backgroundImage} />
+                <View style={styles.overlay}></View>
                 <SafeAreaView >
                     {back &&
                         <View style={styles.backArrow}>
@@ -55,6 +56,12 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '110%',
         resizeMode: 'cover'
+    },
+    overlay: {
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'hsla(0, 0%, 0%, 0.40)'
     },
     backArrow: {
         position: 'fixed',

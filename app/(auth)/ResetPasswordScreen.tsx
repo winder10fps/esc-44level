@@ -1,8 +1,8 @@
 import AuthScreen from "@/components/AuthScreen";
+import AuthSectionContainer from "@/components/AuthSectionContainer";
 import CustomText from "@/components/CustomText";
 import CustomTextButton from "@/components/CustomTextButton";
 import CustomTextInput from "@/components/CustomTextInput";
-import SectionContainer from "@/components/SectionContainer";
 import { COLORS } from "@/constants/ui";
 import { validateResetPassword } from "@/functions/validation";
 import { useForm } from "@/hooks/useForm";
@@ -24,7 +24,7 @@ export default function ResetPasswordScreen() {
 
     return (
         <AuthScreen back>
-            <SectionContainer>
+            <AuthSectionContainer>
                 <CustomText
                     variant="h3"
                     style={styles.heading}
@@ -72,7 +72,7 @@ export default function ResetPasswordScreen() {
                     onPress={onResetPassword}
                     style={styles.resetButton}
                 />
-            </SectionContainer>
+            </AuthSectionContainer>
         </AuthScreen>
     );
 }

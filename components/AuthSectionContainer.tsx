@@ -1,10 +1,10 @@
 import { COLORS } from "@/constants/ui";
-import { View, ViewProps } from "react-native"
+import { View, ViewProps } from "react-native";
 
 
-type SectionContainerProps = ViewProps;
+type AuthSectionContainerProps = ViewProps;
 
-const SectionContainer: React.FC<SectionContainerProps> = ({ children }) => {
+const AuthSectionContainer: React.FC<AuthSectionContainerProps> = ({ children }) => {
     return (
         <View style={{
             paddingVertical: 24,
@@ -21,4 +21,4 @@ const SectionContainer: React.FC<SectionContainerProps> = ({ children }) => {
 
 
 
-export default SectionContainer;
+export default AuthSectionContainer;

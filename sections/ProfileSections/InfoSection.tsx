@@ -6,6 +6,7 @@ import { StyleSheet, View } from "react-native"
 
 const InfoSection = () => {
     const onLogout = () => {
+        router.push('/(auth)/LoginScreen')
     }
     
     return (

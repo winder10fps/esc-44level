@@ -1,15 +1,11 @@
 {
   "expo": {
-    "name": "ESC 44level",
+    "name": "ESC Level44",
     "slug": "esc-44level",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/logo.png",
     "scheme": "esc44level",
-    "fonts": [
-      "./assets/fonts/Roboto.ttf",
-      "./assets/fonts/RobotoCondensed.ttf"
-    ],
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
@@ -37,6 +33,15 @@
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#0D0D0D"
+        }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/Roboto.ttf",
+            "./assets/fonts/RobotoCondensed.ttf"
+          ]
         }
       ]
     ],
