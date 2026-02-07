@@ -1,7 +1,7 @@
 import CustomText from "@/components/CustomText";
 import FullScreenImageModal from "@/components/FullScreenImageModal";
 import { COLORS } from "@/constants/ui";
-import { mockUser } from "@/constants/withServer";
+import { useAuth } from "@/contexts/AuthContext";
 import { useState } from "react";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
@@ -10,27 +10,29 @@ const UserSection = () => {
 
     const [avatarFullScreen, setAvatarFullScreen] = useState(false)
 
+    const {user} = useAuth()
+
     return (
         <View style={styles.sectionContainer}>
             <View style={styles.topElements}>
                 <TouchableOpacity onPress={() => setAvatarFullScreen(true)}>
-                    <Image source={{ uri: mockUser.avatar }} style={styles.avatar} />
+                    <Image source={{ uri: user?.avatar }} style={styles.avatar} />
                 </TouchableOpacity>
                 <FullScreenImageModal
                     visible={avatarFullScreen}
-                    imageSource={{ uri: mockUser.avatar }}
+                    imageSource={{ uri: user?.avatar }}
                     onClose={() => { setAvatarFullScreen(false) }}
                 />
-                <CustomText style={styles.userName}>{mockUser.name}</CustomText>
-                <CustomText style={styles.grayText} variant="secondary">#P{mockUser.id}</CustomText>
+                <CustomText style={styles.userName}>{user?.name}</CustomText>
+                <CustomText style={styles.grayText} variant="secondary">#P{user?.id}</CustomText>
             </View>
             <View style={styles.bottomElements}>
                 <View style={styles.elementContainer}>
-                    <CustomText style={styles.elementNumber}>{mockUser.level}</CustomText>
+                    <CustomText style={styles.elementNumber}>{user?.level}</CustomText>
                     <CustomText style={styles.grayText} variant="primary">Level</CustomText>
                 </View>
                 <View style={styles.elementContainer}>
-                    <CustomText style={styles.elementNumber}>{mockUser.hours}</CustomText>
+                    <CustomText style={styles.elementNumber}>{user?.hours}</CustomText>
                     <CustomText style={styles.grayText} variant="primary">Часов с нами</CustomText>
                 </View>
             </View>

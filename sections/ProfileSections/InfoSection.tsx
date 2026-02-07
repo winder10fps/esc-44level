@@ -1,12 +1,17 @@
 import LinkInProfileSection from "@/components/LinkInProfileSection";
 import { COLORS } from "@/constants/ui";
+import { useAuth } from "@/contexts/AuthContext";
 import { router } from "expo-router";
 import { StyleSheet, View } from "react-native"
 
 
 const InfoSection = () => {
-    const onLogout = () => {
-        router.push('/(auth)/LoginScreen')
+    const {logout} = useAuth();
+
+
+
+    const onLogout = async () => {
+        await logout()
     }
     
     return (

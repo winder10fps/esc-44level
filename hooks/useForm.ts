@@ -46,6 +46,13 @@ export const useForm = () => {
         }));
     };
 
+    const setErrorMessage = (message: string) => {
+        setFormState(prev => ({
+            ...prev,
+            errorMessage: message
+        }));
+    }
+
     const resetErrors = () => {
         setFormState(prev => ({
             ...prev,
@@ -58,6 +65,7 @@ export const useForm = () => {
         formState,
         updateField,
         setFieldError,
+        setErrorMessage,
         resetErrors
     }
 } 

@@ -4,21 +4,35 @@ import CustomText from "@/components/CustomText";
 import CustomTextButton from "@/components/CustomTextButton";
 import CustomTextInput from "@/components/CustomTextInput";
 import { COLORS } from "@/constants/ui";
+import { useAuth } from "@/contexts/AuthContext";
 import { validateConfirmEmail } from "@/functions/validation";
 import { useForm } from "@/hooks/useForm";
-import { router, useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams } from "expo-router";
 import { StyleSheet, Text } from "react-native";
 
 
 export default function ConfirmEmailScreen() {
     const { formState, updateField, setFieldError, resetErrors } = useForm();
+    const { user, register, updatePassword } = useAuth()
 
     const params = useLocalSearchParams();
     const email = params.email as string;
+    const password = params.password as string;
+    const name = params.name as string;
+    const newPassword = params.newPassword as string;
 
     const onConfirmEmail = () => {
         if (validateConfirmEmail(formState, setFieldError, resetErrors)) {
-            router.push('/(auth)/LoginScreen')
+            if (name !== undefined) {
+                console.log(name);
+                register({ email, password, name })
+                return;
+            }
+            else {
+                updatePassword({ email, newPassword })
+                console.log('reseted password');
+                console.log(user);
+            }
         }
     }
 
@@ -35,7 +49,7 @@ export default function ConfirmEmailScreen() {
                     variant="secondary"
                     style={styles.caption}
                 >
-                    На адрес <Text style={{color: COLORS.WHITE}}>{email}</Text> было выслано письмо с 4-х значным кодом
+                    На адрес <Text style={{ color: COLORS.WHITE }}>{email}</Text> было выслано письмо с 4-х значным кодом
                 </CustomText>
                 <CustomText
                     variant="secondary"
@@ -78,7 +92,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         maxWidth: 265,
         color: COLORS.GRAY,
-        marginTop: 8, 
+        marginTop: 8,
         marginBottom: 24
     },
     confirmButton: {

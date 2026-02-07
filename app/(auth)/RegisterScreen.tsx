@@ -5,21 +5,37 @@ import CustomText from "@/components/CustomText";
 import CustomTextButton from "@/components/CustomTextButton";
 import CustomTextInput from "@/components/CustomTextInput";
 import { COLORS } from "@/constants/ui";
+import { useAuth } from "@/contexts/AuthContext";
 import { validateRegister } from "@/functions/validation";
 import { useForm } from "@/hooks/useForm";
 import { router } from "expo-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 
 
 export default function LoginScreen() {
-    const { formState, updateField, setFieldError, resetErrors } = useForm();
+    const { formState, updateField, setFieldError, setErrorMessage, resetErrors } = useForm();
     const [isPolicyChecked, setIsPolicyChecked] = useState(false);
     const [isAgreementChecked, setIsAgreementChecked] = useState(false);
+    const { authError, clearAuthError } = useAuth()
+
+    const name = formState.name;
+    const email = formState.email;
+    const password = formState.password;
+
+    useEffect(() => {
+        if (authError) {
+            setErrorMessage(authError.message);
+            clearAuthError();
+        }
+    }, [authError, setErrorMessage, setFieldError, clearAuthError]);
 
     const onRegister = () => {
         if (validateRegister(formState, setFieldError, resetErrors)) {
-            router.push('/');
+            router.push({
+                pathname: '/(auth)/ConfirmEmailScreen',
+                params: { email, password, name }
+            })
         }
     };
 

@@ -4,18 +4,33 @@ import CustomText from "@/components/CustomText";
 import CustomTextButton from "@/components/CustomTextButton";
 import CustomTextInput from "@/components/CustomTextInput";
 import { COLORS } from "@/constants/ui";
+import { useAuth } from "@/contexts/AuthContext";
 import { validateLogin } from "@/functions/validation";
 import { useForm } from "@/hooks/useForm";
 import { router } from "expo-router";
+import { useEffect } from "react";
 import { StyleSheet } from "react-native";
 
 
 export default function LoginScreen() {
-    const { formState, updateField, setFieldError, resetErrors } = useForm();
+    const { formState, updateField, setFieldError, setErrorMessage, resetErrors } = useForm();
+
+    const email = formState.email;
+    const password = formState.password;
+    const rememberMe = true;
+
+    const { login, authError, clearAuthError } = useAuth()
+
+    useEffect(() => {
+        if (authError) {
+            setErrorMessage(authError.message);
+            clearAuthError();
+        }
+    }, [authError, setErrorMessage, setFieldError, clearAuthError]);
 
     const onLogin = () => {
         if (validateLogin(formState, setFieldError, resetErrors)) {
-            router.push('/');
+            login({ email, password, rememberMe });
         }
     };
 

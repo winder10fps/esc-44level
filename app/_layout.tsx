@@ -1,38 +1,53 @@
+// app/_layout.tsx
 import { COLORS } from "@/constants/ui";
-import { isAuth } from "@/constants/withServer";
 import * as Font from 'expo-font';
 import { SplashScreen, Stack } from "expo-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { View } from "react-native";
+import { AuthProvider, useAuth } from '@/contexts/AuthContext';
+import LoadingScreen from "@/components/LoadingScreen";
 
 
-SplashScreen.preventAutoHideAsync();
-
-
-export default function RootLayout() {
+// Основной контент
+const RootLayoutContent = () => {
+    const { isAuth, isLoading } = useAuth();
     const [fontsLoaded, fontError] = Font.useFonts({
         'Roboto': require('@/assets/fonts/Roboto.ttf'),
         'Roboto-Condensed': require('@/assets/fonts/RobotoCondensed.ttf'),
     });
 
+    const [showSplash, setShowSplash] = useState(true);
+
+    // Управляем сплеш-скрином
     useEffect(() => {
-        if (fontsLoaded || fontError) {
+        if (showSplash) {
+            SplashScreen.preventAutoHideAsync();
+        } else {
             SplashScreen.hideAsync();
         }
-    }, [fontsLoaded, fontError]);
+    }, [showSplash]);
 
-    if (!fontsLoaded && !fontError) {
-        return null;
+    // Скрываем сплеш когда все готово
+    useEffect(() => {
+        if (fontsLoaded && !isLoading) {
+            setTimeout(() => setShowSplash(false), 500);
+        }
+    }, [fontsLoaded, isLoading]);
+
+    // Показываем загрузку пока не готовы шрифты или проверка авторизации
+    if (!fontsLoaded || fontError || isLoading) {
+        return <LoadingScreen />;
     }
 
     return (
         <View style={{ flex: 1, backgroundColor: COLORS.BACKGROUND }}>
             {isAuth ? (
+                // Авторизованные экраны
                 <Stack
                     screenOptions={{
                         headerShown: false,
                         animation: 'fade',
-                        animationDuration: 100,
+                        animationDuration: 300,
                     }}
                 >
                     <Stack.Screen name="(tabs)" />
@@ -44,12 +59,12 @@ export default function RootLayout() {
                     <Stack.Screen name="screens/UserAgreementScreen" />
                 </Stack>
             ) : (
+                // Неавторизованные экраны
                 <Stack screenOptions={{
                     headerShown: false,
                     animation: 'fade',
-                    animationDuration: 100
-                }}
-                >
+                    animationDuration: 300
+                }}>
                     <Stack.Screen name="(auth)/LoginScreen" />
                     <Stack.Screen name="(auth)/RegisterScreen" />
                     <Stack.Screen name="(auth)/ConfirmEmailScreen" />
@@ -57,5 +72,15 @@ export default function RootLayout() {
                 </Stack>
             )}
         </View>
+    );
+}
+
+
+// Главный компонент
+export default function RootLayout() {
+    return (
+        <AuthProvider>
+            <RootLayoutContent />
+        </AuthProvider>
     );
 }

@@ -1,7 +1,7 @@
 import BellIcon from "@/assets/icons/BellIcon";
 import CallingPhoneIcon from "@/assets/icons/CallingPhoneIcon";
 import CustomText from "@/components/CustomText";
-import { mockUser } from "@/constants/withServer";
+import { useAuth } from "@/contexts/AuthContext";
 import { useChangePage } from "@/functions/navigation";
 import { router } from "expo-router";
 import { Image, Linking, StyleSheet, TouchableOpacity, View } from "react-native";
@@ -25,16 +25,18 @@ const HeaderSection = () => {
         router.push('/screens/NotifScreen');
     }
 
+    const {user} = useAuth();
+
     return (
         <View style={styles.sectionContainer}>
             <TouchableOpacity style={styles.profileInfo} onPress={goProfile}>
                 <Image
                     source={{
-                        uri: mockUser.avatar
+                        uri: user?.avatar
                     }}
                     style={styles.avatar}
                 />
-                <CustomText variant="h3">{mockUser.name}</CustomText>
+                <CustomText variant="h3">{user?.name}</CustomText>
             </TouchableOpacity>
             <View style={styles.buttons}>
                 <TouchableOpacity onPress={handleNotifs}>

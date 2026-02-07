@@ -17,7 +17,10 @@ export default function ResetPasswordScreen() {
         if (validateResetPassword(formState, setFieldError, resetErrors)) {
             router.push({
                 pathname: '/(auth)/ConfirmEmailScreen',
-                params: { email: formState.email }
+                params: {
+                    email: formState.email,
+                    newPassword: formState.password
+                }
             });
         }
     }
