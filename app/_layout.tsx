@@ -1,11 +1,11 @@
 // app/_layout.tsx
+import LoadingScreen from "@/components/LoadingScreen";
 import { COLORS } from "@/constants/ui";
+import { AuthProvider, useAuth } from '@/contexts/AuthContext/AuthContext';
 import * as Font from 'expo-font';
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect, useState } from "react";
 import { View } from "react-native";
-import { AuthProvider, useAuth } from '@/contexts/AuthContext';
-import LoadingScreen from "@/components/LoadingScreen";
 
 
 // Основной контент

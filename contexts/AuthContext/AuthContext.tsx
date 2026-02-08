@@ -1,75 +1,15 @@
 import React, { createContext, useState, useContext, useEffect, ReactNode, useCallback } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-
-// Типы для заглушек
-export interface User {
-    id: string;
-    email: string;
-    password: string;
-    name: string;
-    avatar?: string;
-    level: number;
-    hours: number;
-    notifs: any[];
-    role?: string;
-}
-
-interface LoginCredentials {
-    email: string;
-    password: string;
-    rememberMe?: boolean;
-}
-
-interface ResetPasswordCredentials {
-    email: string;
-    newPassword: string;
-}
-
-interface RegisterData {
-    email: string;
-    password: string;
-    name: string;
-}
-
-interface AuthResponse {
-    user: User;
-    token: string;
-    refreshToken?: string;
-}
-
-// тип для обработки ошибок
-interface AuthError {
-    message: string;
-    field?: 'email' | 'password' | 'general';
-}
-
-interface AuthContextType {
-    user: User | null;
-    token: string | null;
-    isLoading: boolean;
-    isAuth: boolean;
-    authError: AuthError | null;
-    checkAuth: () => Promise<void>;
-    login: (credentials: LoginCredentials) => Promise<AuthResponse | null>;
-    register: (data: RegisterData) => Promise<AuthResponse | null>;
-    logout: () => Promise<void>;
-    updateUser: (userData: Partial<User>) => Promise<User | null>;
-    updatePassword: (credentials: ResetPasswordCredentials) => Promise<AuthResponse | null>;
-    refreshUserData: () => Promise<void>;
-    clearAuthError: () => void;
-}
+import { AuthContextType, AuthError, AuthResponse, LoginCredentials, RegisterData, ResetPasswordCredentials, TournamentsData, User } from './AuthContextInterfaces';
 
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
-
 
 //  для AsyncStorage
 const STORAGE_KEYS = {
     TOKEN: 'auth_token',
     REFRESH_TOKEN: 'auth_refresh_token',
 };
-
 
 // заглушки
 let MOCK_USERS: User[] = [
@@ -84,9 +24,88 @@ let MOCK_USERS: User[] = [
         notifs: [
             { id: 1, title: 'Добро пожаловать!', message: 'Вы успешно зарегистрировались', read: false },
             { id: 2, title: 'Новый турнир', message: 'Зарегистрируйтесь на ближайший турнир', read: true }
-        ]
+        ],
+        booking: [{
+            pc: 1,
+            time: '19:00',
+            busyWithMe: false,
+        }]
     },
 ];
+
+let MOCK_FROMCLUB = {
+    tournaments: {
+        future: [
+            {
+                id: 3,
+                name: "Киберспринт: Valorant Open Cup",
+                game: "Valorant",
+                date: "2024-03-15",
+                time: "18:00",
+                caption: "турнир турнир турнир турнир турнир турнир турнир турниртурниртурниртурниртурниртурнир",
+                prize_pool: "50 000 ₽",
+                max_teams: 16,
+                registered_teams: 12,
+                status: "registration_open",
+            },
+            {
+                id: 2,
+                name: "Dota 2 Battle Royal",
+                game: "Dota 2",
+                date: "2024-03-20",
+                time: "17:30",
+                caption: "турнир турнир турнир турнир турнир турнир турнир турниртурниртурниртурниртурниртурнир",
+                prize_pool: "75 000 ₽",
+                max_teams: 8,
+                registered_teams: 8,
+                status: "registration_closed",
+            },
+
+        ],
+        past: [
+            {
+                id: 1,
+                name: "Royal",
+                game: "Dota 6",
+                date: "2024-03-20",
+                time: "17:30",
+                caption: "турнир турнир турнир турнир турнир турнир турнир турниртурниртурниртурниртурниртурнир",
+                prize_pool: "75 000 ₽",
+                max_teams: 8,
+                registered_teams: 8,
+                status: "registration_closed",
+            }
+        ]
+    },
+    catalog: {
+        computers: [
+            {
+                id: 1,
+                heading: 'ПК 1-10',
+                line: 1,
+                processor: '11400F',
+                viedocard: 'GTX 1060',
+                resolution: '1920x1080',
+                refreshRate: 144
+            }
+        ],
+        PSAndVR: [
+            {
+                id: 1,
+                heading: 'Playstation 5',
+                screen: 130,
+                audioSystem: '5.1 dolby digital',
+                helmets: null,
+            }
+        ],
+        booking: {
+            pc1: '19:00', // забронен на 19
+            pc2: '+', // занят
+            pc3: '-', // свободен
+            // ...
+        }
+    }
+}
 
 
 // Моковый токен, должен приходить с сервера
@@ -117,7 +136,8 @@ const fetchUserFromServer = async (userId: string): Promise<User | null> => {
         role: foundUser.role,
         level: foundUser.level ?? 1,
         hours: foundUser.hours ?? 0,
-        notifs: foundUser.notifs ?? []
+        notifs: foundUser.notifs ?? [],
+        booking: foundUser.booking
     };
 };
 
@@ -143,7 +163,8 @@ const updateUserOnServer = async (userId: string, userData: Partial<User>): Prom
         role: foundUser.role,
         level: foundUser.level ?? 1,
         hours: foundUser.hours ?? 0,
-        notifs: foundUser.notifs ?? []
+        notifs: foundUser.notifs ?? [],
+        booking: foundUser.booking
     };
 
     return { ...currentUser, ...userData };
@@ -185,7 +206,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const [isAuth, setIsAuth] = useState(false);
     const [authError, setAuthError] = useState<AuthError | null>(null);
 
-
     // Очистка авторизации
     const clearAuth = useCallback(async () => {
         try {
@@ -203,12 +223,10 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         }
     }, []);
 
-
     // Функция для очистки ошибок авторизации
     const clearAuthError = useCallback(() => {
         setAuthError(null);
     }, []);
-
 
     // Функция для загрузки данных пользователя с сервера
     const loadUserData = useCallback(async (userId: string) => {
@@ -233,7 +251,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             });
         }
     }, []);
-
 
     // Проверка авторизации, запрашивает с сервера
     const checkAuth = useCallback(async () => {
@@ -276,12 +293,10 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         }
     }, [clearAuth, loadUserData, clearAuthError]);
 
-
     // Проверка авторизации при старте приложения
     useEffect(() => {
         checkAuth();
     }, [checkAuth]);
-
 
     // Вход в приложение
     const login = useCallback(async (credentials: LoginCredentials): Promise<AuthResponse | null> => {
@@ -345,7 +360,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         }
     }, [clearAuthError]);
 
-
     // Регистрация
     const register = useCallback(async (data: RegisterData): Promise<AuthResponse | null> => {
         try {
@@ -372,7 +386,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                 name: data.name,
                 level: 1,
                 hours: 0,
-                notifs: []
+                notifs: [],
+                booking: [],
             };
 
             // Добавляем в базу данных
@@ -424,7 +439,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         }
     }, [clearAuthError]);
 
-
     // Выход
     const logout = useCallback(async () => {
         try {
@@ -440,7 +454,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             setIsLoading(false);
         }
     }, [clearAuth]);
-
 
     // Обновление пароля и автоматический вход
     const updatePassword = useCallback(async (credentials: ResetPasswordCredentials): Promise<AuthResponse | null> => {
@@ -507,7 +520,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         }
     }, [clearAuthError]);
 
-
     // Обновление данных пользователя
     const updateUser = useCallback(async (userData: Partial<User>): Promise<User | null> => {
         try {
@@ -535,7 +547,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         }
     }, [user]);
 
-
     // принудительное обновление данных с сервера
     const refreshUserData = useCallback(async () => {
         if (!user?.id) return;
@@ -555,6 +566,15 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         }
     }, [user?.id]);
 
+    // Функция для получения всех турниров
+    const fetchAllTournaments = useCallback(async (): Promise<TournamentsData> => {
+        await delay(800); // Имитация сетевой задержки
+
+        const tournaments = MOCK_FROMCLUB.tournaments;
+
+        return tournaments;
+    }, []);
+
     const value: AuthContextType = {
         user,
         token,
@@ -569,6 +589,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         updatePassword,
         refreshUserData,
         clearAuthError,
+        fetchAllTournaments
     };
 
     return (
@@ -577,7 +598,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         </AuthContext.Provider>
     );
 };
-
 
 export const useAuth = () => {
     const context = useContext(AuthContext);

@@ -4,7 +4,7 @@ import CustomText from "@/components/CustomText";
 import CustomTextButton from "@/components/CustomTextButton";
 import CustomTextInput from "@/components/CustomTextInput";
 import { COLORS } from "@/constants/ui";
-import { useAuth } from "@/contexts/AuthContext";
+import { useAuth } from "@/contexts/AuthContext/AuthContext";
 import { validateLogin } from "@/functions/validation";
 import { useForm } from "@/hooks/useForm";
 import { router } from "expo-router";

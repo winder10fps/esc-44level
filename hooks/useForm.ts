@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 
-interface LoginFormState {
+interface FormState {
     name: string;
     email: string;
     password: string,
@@ -19,7 +19,7 @@ interface LoginFormState {
 
 
 export const useForm = () => {
-    const [formState, setFormState] = useState<LoginFormState>({
+    const [formState, setFormState] = useState<FormState>({
         name: '',
         email: '',
         password: '',

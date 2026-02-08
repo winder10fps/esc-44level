@@ -1,19 +1,17 @@
 import LinkInProfileSection from "@/components/LinkInProfileSection";
 import { COLORS } from "@/constants/ui";
-import { useAuth } from "@/contexts/AuthContext";
+import { useAuth } from "@/contexts/AuthContext/AuthContext";
 import { router } from "expo-router";
-import { StyleSheet, View } from "react-native"
+import { StyleSheet, View } from "react-native";
 
 
 const InfoSection = () => {
-    const {logout} = useAuth();
-
-
+    const { logout } = useAuth();
 
     const onLogout = async () => {
         await logout()
     }
-    
+
     return (
         <View style={styles.sectionConstainer}>
             <LinkInProfileSection text="О клубе" onPress={() => router.push('/screens/AboutClubScreen')} />
@@ -22,7 +20,7 @@ const InfoSection = () => {
             <LinkInProfileSection text="Частые вопросы" onPress={() => router.push('/screens/FAQScreen')} />
             <LinkInProfileSection text="Конфиденциальность" onPress={() => router.push('/screens/PrivacyScreen')} />
             <LinkInProfileSection text="Польз. соглашение" onPress={() => router.push('/screens/UserAgreementScreen')} />
-            <LinkInProfileSection text="Выйти" accent onPress={onLogout}/>
+            <LinkInProfileSection text="Выйти" accent onPress={onLogout} />
         </View>
     )
 }

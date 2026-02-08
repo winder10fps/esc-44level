@@ -1,4 +1,4 @@
-import { Image, ScrollView, StatusBar, StyleSheet, View } from "react-native";
+import { Image, RefreshControl, ScrollView, StatusBar, StyleSheet, View } from "react-native";
 import { COLORS } from "../../constants/ui";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import TournamentSection from "@/sections/HomeScreenSections/TournamentSection";
@@ -7,20 +7,33 @@ import ContactsSection from "@/sections/HomeScreenSections/ContactsSection";
 import HeaderSection from "@/sections/HomeScreenSections/HeaderSection";
 import CTASection from "@/sections/HomeScreenSections/CTASection";
 import ImagesSection from "@/sections/HomeScreenSections/ImagesSection";
+import { useUpdateTabs } from "@/hooks/useUpdateTabs";
 
 
 const Index = () => {
+  const {refreshing, onRefresh, refreshKey} = useUpdateTabs()
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle={"light-content"} />
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            colors={[COLORS.PRIMARY]}
+            progressBackgroundColor={COLORS.CARD_BACKGROUND}
+          />
+        }
+      >
         <View style={styles.forBackgroundImage}>
           <HeaderSection />
           <CTASection />
           <ImagesSection />
           <Image source={require('@/assets/images/homePageBackground.png')} style={styles.backgroundImage} />
         </View>
-        <TournamentSection />
+        <TournamentSection refreshKey={refreshKey}/>
         <ServiceSection />
         <ContactsSection />
       </ScrollView>

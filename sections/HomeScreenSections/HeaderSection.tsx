@@ -1,7 +1,7 @@
 import BellIcon from "@/assets/icons/BellIcon";
 import CallingPhoneIcon from "@/assets/icons/CallingPhoneIcon";
 import CustomText from "@/components/CustomText";
-import { useAuth } from "@/contexts/AuthContext";
+import { useAuth } from "@/contexts/AuthContext/AuthContext";
 import { useChangePage } from "@/functions/navigation";
 import { router } from "expo-router";
 import { Image, Linking, StyleSheet, TouchableOpacity, View } from "react-native";

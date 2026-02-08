@@ -1,14 +1,36 @@
 import CustomText from "@/components/CustomText";
 import CustomTextButton from "@/components/CustomTextButton";
 import { COLORS } from "@/constants/ui";
-import { clubInfo, Tournament } from "@/constants/withServer";
+import { Tournament } from "@/constants/withServer";
+import { useAuth } from "@/contexts/AuthContext/AuthContext";
 import { router } from "expo-router";
-import { FlatList, ListRenderItem, StyleSheet, View } from "react-native";
+import { useEffect, useState } from "react";
+import { ActivityIndicator, FlatList, ListRenderItem, StyleSheet, View } from "react-native";
 
 
-const TournamentSection = () => {
+type TournamentSectionProps = {
+    refreshKey: number;
+}
 
-    const futureTournaments = clubInfo['tournaments'].future
+
+const TournamentSection = ({ refreshKey = 0 }: TournamentSectionProps) => {
+    const { fetchAllTournaments } = useAuth();
+    const [futureTournaments, setFutureTournaments] = useState<Tournament[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const loadTournaments = async () => {
+            try {
+                setLoading(true);
+                const tournamentsData = await fetchAllTournaments();
+                setFutureTournaments(tournamentsData.future);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        loadTournaments();
+    }, [fetchAllTournaments, refreshKey]);
 
     const renderTournament: ListRenderItem<Tournament> = ({ item }) => (
         <View style={styles.tournamentContainer}>
@@ -29,17 +51,33 @@ const TournamentSection = () => {
                 label="Подробнее"
                 size="default"
                 variant="secondary"
-                onPress={() => { router.push('/screens/TournamentsScreen') }}
+                onPress={() => {
+                    router.push({
+                        pathname: '/screens/TournamentsScreen',
+                        params: { tournamentId: item.id.toString() }
+                    });
+                }}
             />
         </View>
-    )
+    );
+
+    if (loading) {
+        return (
+            <View style={styles.sectionContainer}>
+                <CustomText variant="h2">Ближайшие турниры</CustomText>
+                <ActivityIndicator size="small" color={COLORS.GRAY} style={styles.loadingIndicator} />
+            </View>
+        );
+    }
 
     return (
         <View style={styles.sectionContainer}>
             <CustomText variant="h2">Ближайшие турниры</CustomText>
             {futureTournaments.length === 0 ? (
-                <View>
-                    <CustomText variant="big" style={styles.tournamentContainer}>Нет турниров</CustomText>
+                <View style={styles.noTournamentsContainer}>
+                    <CustomText variant="big" style={styles.noTournamentsText}>
+                        Нет запланированных турниров
+                    </CustomText>
                 </View>
             ) : (
                 <FlatList
@@ -50,9 +88,8 @@ const TournamentSection = () => {
                 />
             )}
         </View>
-    )
-}
-
+    );
+};
 
 const styles = StyleSheet.create({
     sectionContainer: {
@@ -62,14 +99,25 @@ const styles = StyleSheet.create({
         paddingBottom: 8,
         paddingHorizontal: 8,
         borderRadius: 25,
+        marginBottom: 16,
     },
     tournamentContainer: {
         padding: 16,
         backgroundColor: COLORS.CARD_BACKGROUND,
         borderRadius: 25,
         marginBottom: 16
+    },
+    noTournamentsContainer: {
+        padding: 20,
+        alignItems: 'center',
+    },
+    noTournamentsText: {
+        color: COLORS.GRAY,
+        textAlign: 'center',
+    },
+    loadingIndicator: {
+        marginBottom: 16
     }
-})
-
+});
 
 export default TournamentSection;

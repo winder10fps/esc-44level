@@ -1,7 +1,7 @@
 import CustomText from "@/components/CustomText";
 import FullScreenImageModal from "@/components/FullScreenImageModal";
 import { COLORS } from "@/constants/ui";
-import { useAuth } from "@/contexts/AuthContext";
+import { useAuth } from "@/contexts/AuthContext/AuthContext";
 import { useState } from "react";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
