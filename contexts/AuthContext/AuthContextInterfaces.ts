@@ -39,7 +39,7 @@ export interface AuthError {
     field?: 'email' | 'password' | 'general';
 }
 
-export interface Tournament {
+export type Tournament = {
     id: number;
     name: string;
     game: string;
@@ -49,12 +49,19 @@ export interface Tournament {
     prize_pool: string;
     max_teams: number;
     registered_teams: number;
-    status: string;
+    status: 'past' | 'future';
+    avatar: string;
 }
 
 export interface TournamentsData {
     future: Tournament[];
     past: Tournament[];
+}
+
+export interface Notif {
+    id: number;
+    title: string;
+    message: string;
 }
 
 export interface AuthContextType {

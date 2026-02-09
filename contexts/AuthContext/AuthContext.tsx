@@ -46,7 +46,8 @@ let MOCK_FROMCLUB = {
                 prize_pool: "50 000 ₽",
                 max_teams: 16,
                 registered_teams: 12,
-                status: "registration_open",
+                status: "future",
+                avatar: 'https://i.pravatar.cc/150?img=2'
             },
             {
                 id: 2,
@@ -58,7 +59,8 @@ let MOCK_FROMCLUB = {
                 prize_pool: "75 000 ₽",
                 max_teams: 8,
                 registered_teams: 8,
-                status: "registration_closed",
+                status: "future",
+                avatar: 'https://i.pravatar.cc/150?img=3'
             },
 
         ],
@@ -73,7 +75,8 @@ let MOCK_FROMCLUB = {
                 prize_pool: "75 000 ₽",
                 max_teams: 8,
                 registered_teams: 8,
-                status: "registration_closed",
+                status: "past",
+                avatar: 'https://i.pravatar.cc/150?img=4'
             }
         ]
     },
@@ -572,7 +575,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
         const tournaments = MOCK_FROMCLUB.tournaments;
 
-        return tournaments;
+        return tournaments as TournamentsData;
     }, []);
 
     const value: AuthContextType = {

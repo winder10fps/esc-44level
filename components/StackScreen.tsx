@@ -1,18 +1,18 @@
 import ArrowIcon from "@/assets/icons/ArrowIcon";
 import { COLORS } from "@/constants/ui";
 import { router } from "expo-router";
-import { ScrollView, StyleSheet, TouchableOpacity, TouchableOpacityProps, View } from "react-native";
+import { ScrollView, ScrollViewProps, StyleSheet, TouchableOpacity, TouchableOpacityProps, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import CustomText from "./CustomText";
 
 
-type StackScreenProps = TouchableOpacityProps & {
+type StackScreenProps = TouchableOpacityProps & ScrollViewProps & {
     title: string;
 }
 
-const StackScreen: React.FC<StackScreenProps> = ({ title, children }) => {
+const StackScreen: React.FC<StackScreenProps> = ({ title, children, style }) => {
     return (
-        <SafeAreaView style={styles.screenContainer}>
+        <SafeAreaView style={[styles.screenContainer, style]}>
             <View style={styles.header}>
                 <TouchableOpacity
                     style={styles.backButton}
