@@ -58,6 +58,30 @@ export interface TournamentsData {
     past: Tournament[];
 }
 
+export type CatalogCardType = {
+    id: number;
+    heading: string;
+    photo: string;
+    line?: number;
+    specifications: {
+        processor?: string;
+        viedocard?: string;
+        resolution?: string;
+        refreshRate?: number;
+        screen?: number;
+        audioSystem?: string;
+        helmets?: number;
+        quantity?: string;
+        price?: number;
+    }
+}
+
+export interface CatalogData {
+    computers: CatalogCardType[];
+    PSAndVR: CatalogCardType[];
+    bar: CatalogCardType[];
+}
+
 export interface Notif {
     id: number;
     title: string;
@@ -79,4 +103,5 @@ export interface AuthContextType {
     refreshUserData: () => Promise<void>;
     clearAuthError: () => void;
     fetchAllTournaments: () => Promise<TournamentsData>;
+    fetchAllCatalogCards: () => Promise<CatalogData>
 }

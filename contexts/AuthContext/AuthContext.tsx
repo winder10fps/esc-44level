@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext, useEffect, ReactNode, useCallback } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { AuthContextType, AuthError, AuthResponse, LoginCredentials, RegisterData, ResetPasswordCredentials, TournamentsData, User } from './AuthContextInterfaces';
+import { AuthContextType, AuthError, AuthResponse, CatalogData, LoginCredentials, RegisterData, ResetPasswordCredentials, TournamentsData, User } from './AuthContextInterfaces';
 
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -85,28 +85,67 @@ let MOCK_FROMCLUB = {
             {
                 id: 1,
                 heading: 'ПК 1-10',
+                photo: 'https://static.insales-cdn.com/images/articles/1/1550/1418766/api.jpg',
                 line: 1,
-                processor: '11400F',
-                viedocard: 'GTX 1060',
-                resolution: '1920x1080',
-                refreshRate: 144
-            }
+                specifications: {
+                    processor: '11400F',
+                    viedocard: 'GTX 1060',
+                    resolution: '1920x1080',
+                    refreshRate: 144
+                }
+            },
+            {
+                id: 2,
+                heading: 'ПК 11-20',
+                photo: 'https://static.insales-cdn.com/images/articles/1/1550/1418766/api.jpg',
+                line: 2,
+                specifications: {
+                    processor: '11400F',
+                    viedocard: 'GTX 1060',
+                    resolution: '1920x1080',
+                    refreshRate: 144
+                }
+            },
+            
         ],
         PSAndVR: [
             {
                 id: 1,
                 heading: 'Playstation 5',
-                screen: 130,
-                audioSystem: '5.1 dolby digital',
-                helmets: null,
+                photo: '',
+                specifications: {
+                    screen: 130,
+                    audioSystem: '5.1 dolby digital',
+                    helmets: undefined,
+                }
             }
         ],
-        booking: {
-            pc1: '19:00', // забронен на 19
-            pc2: '+', // занят
-            pc3: '-', // свободен
-            // ...
-        }
+        bar: [
+            {
+                id: 1,
+                heading: 'Sprite',
+                photo: '',
+                specifications: {
+                    quantity: '100 г',
+                    price: 34
+                }
+            },
+            {
+                id: 2,
+                heading: 'Добрый кола',
+                photo: '',
+                specifications: {
+                    quantity: '100 г',
+                    price: 34
+                }
+            }
+        ]
+    },
+    booking: {
+        pc1: '19:00', // забронен на 19
+        pc2: '+', // занят
+        pc3: '-', // свободен
+        // ...
     }
 }
 
@@ -571,11 +610,18 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
     // Функция для получения всех турниров
     const fetchAllTournaments = useCallback(async (): Promise<TournamentsData> => {
-        await delay(800); // Имитация сетевой задержки
+        await delay(800);
 
         const tournaments = MOCK_FROMCLUB.tournaments;
 
         return tournaments as TournamentsData;
+    }, []);
+
+    const fetchAllCatalogCards = useCallback(async (): Promise<CatalogData> => {
+        await delay(800);
+        const catalog = MOCK_FROMCLUB.catalog;
+
+        return catalog as CatalogData;
     }, []);
 
     const value: AuthContextType = {
@@ -592,7 +638,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         updatePassword,
         refreshUserData,
         clearAuthError,
-        fetchAllTournaments
+        fetchAllTournaments,
+        fetchAllCatalogCards
     };
 
     return (

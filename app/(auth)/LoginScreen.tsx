@@ -1,8 +1,8 @@
 import AuthScreen from "@/components/AuthScreen";
-import AuthSectionContainer from "@/components/AuthSectionContainer";
 import CustomText from "@/components/CustomText";
 import CustomTextButton from "@/components/CustomTextButton";
 import CustomTextInput from "@/components/CustomTextInput";
+import SectionContainer from "@/components/SectionContainer";
 import { COLORS } from "@/constants/ui";
 import { useAuth } from "@/contexts/AuthContext/AuthContext";
 import { validateLogin } from "@/functions/validation";
@@ -45,7 +45,7 @@ export default function LoginScreen() {
     return (
         <AuthScreen back={false}>
             <CustomText variant="h2" style={styles.welcomeText}>Добро пожаловать в Level44</CustomText>
-            <AuthSectionContainer>
+            <SectionContainer>
                 <CustomText
                     variant="h3"
                     style={styles.heading}
@@ -97,7 +97,7 @@ export default function LoginScreen() {
                     onPress={onRegister}
                     style={styles.registerButton}
                 />
-            </AuthSectionContainer>
+            </SectionContainer>
         </AuthScreen>
     );
 }
