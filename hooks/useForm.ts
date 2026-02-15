@@ -13,6 +13,7 @@ interface FormState {
         password: boolean;
         confirmPassword: boolean;
         numbers: boolean;
+        teamPlayers: boolean;
     };
     errorMessage: string;
 }
@@ -25,11 +26,11 @@ export const useForm = () => {
         password: '',
         confirmPassword: '',
         numbers: '',
-        errors: { name: false, email: false, password: false, confirmPassword: false, numbers: false },
+        errors: { name: false, email: false, password: false, confirmPassword: false, numbers: false, teamPlayers: false },
         errorMessage: ' '
     })
 
-    const updateField = (field: 'name' | 'email' | 'password' | 'confirmPassword' | 'numbers', value: string) => {
+    const updateField = (field: 'name' | 'email' | 'password' | 'confirmPassword' | 'numbers' | 'teamPlayers', value: string) => {
         setFormState(prev => ({
             ...prev,
             [field]: value,
@@ -38,7 +39,7 @@ export const useForm = () => {
         }))
     }
 
-    const setFieldError = (field: 'name' | 'email' | 'password' | 'confirmPassword' | 'numbers', message: string) => {
+    const setFieldError = (field: 'name' | 'email' | 'password' | 'confirmPassword' | 'numbers' | 'teamPlayers', message: string) => {
         setFormState(prev => ({
             ...prev,
             errors: { ...prev.errors, [field]: true },
@@ -56,7 +57,7 @@ export const useForm = () => {
     const resetErrors = () => {
         setFormState(prev => ({
             ...prev,
-            errors: { name: false, email: false, password: false, confirmPassword: false, numbers: false },
+            errors: { name: false, email: false, password: false, confirmPassword: false, numbers: false, teamPlayers: false },
             errorMessage: ' '
         }))
     }

@@ -9,7 +9,7 @@ import TournamentCard from '@/components/TournamentCard';
 
 type TournamentScreenProps = {
     refreshKey: number;
-    onRefresh?: () => void; 
+    onRefresh?: () => void;
 }
 
 export default function TournamentsScreen({ refreshKey = 0 }: TournamentScreenProps) {
@@ -35,6 +35,7 @@ export default function TournamentsScreen({ refreshKey = 0 }: TournamentScreenPr
 
     const renderTournament: ListRenderItem<Tournament> = ({ item }) => (
         <TournamentCard
+            id={item.id}
             status={item.status}
             avatar={item.avatar}
             name={item.name}
@@ -47,8 +48,8 @@ export default function TournamentsScreen({ refreshKey = 0 }: TournamentScreenPr
 
     return (
         <StackScreen
-        title='Киберспортивные турниры'
-        style={{paddingHorizontal: 8}}
+            title='Киберспортивные турниры'
+            style={{ paddingHorizontal: 8 }}
         >
             {loading ? (
                 <View>

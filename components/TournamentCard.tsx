@@ -2,11 +2,13 @@ import { Image, StyleSheet, View } from "react-native"
 import CustomText from "./CustomText";
 import CustomTextButton from "./CustomTextButton";
 import { COLORS } from "@/constants/ui";
+import { router } from "expo-router";
 
 type TournamentCardProps = {
-    status: 'past' | 'future',
+    id: number;
+    status: 'past' | 'future';
     avatar: string;
-    name: string,
+    name: string;
     game: string;
     caption: string;
     max_teams: number;
@@ -14,6 +16,7 @@ type TournamentCardProps = {
 }
 
 const TournamentCard: React.FC<TournamentCardProps> = ({
+    id,
     status,
     avatar,
     name,
@@ -22,17 +25,19 @@ const TournamentCard: React.FC<TournamentCardProps> = ({
     max_teams,
     registered_teams
 }) => {
-    const goCheckInTournament = () => {
-        console.log('check in');
-    }
-
-    const goResultTournament = () => {
-        console.log('result');
+    const titleToPreview = status === 'past' ? 'Результаты турнира' : 'Регистрация на турнир'
+    const onPreviewTournament = () => {
+        router.push({
+            pathname: '/screens/TournamentPreviewScreen',
+            params: {
+                id: id,
+                title: titleToPreview
+            }
+        })
     }
 
     const burronText = status === 'past' ? 'Результаты' : 'Участвовать';
     const buttonVariant = status === 'past' ? 'secondary' : 'primary';
-    const pressAction = status === 'past' ? goResultTournament : goCheckInTournament;
 
     return (
         <View style={styles.cardContainer} >
@@ -57,7 +62,7 @@ const TournamentCard: React.FC<TournamentCardProps> = ({
                     label={burronText}
                     size="default"
                     variant={buttonVariant}
-                    onPress={pressAction}
+                    onPress={onPreviewTournament}
                 />
                 {status === 'future' &&
                     <View style={styles.participants}>

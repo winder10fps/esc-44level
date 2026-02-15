@@ -5,6 +5,10 @@ const validateName = (name: string) => {
     return name.length > 0;
 }
 
+const validateTeamPlayers = (name: string) => {
+    return name.length > 0;
+}
+
 
 const validateEmail = (email: string) => {
     const hasAtSymbol = email.includes('@');
@@ -123,6 +127,27 @@ export const validateConfirmEmail = (formState: UseFormTypes['formState'],
 
     if (!validateNumbers(formState.numbers)) {
         setFieldError('numbers', 'Заполните поле кодом с почты!');
+        return false;
+    }
+
+    return true;
+}
+
+
+export const validateTournamentSignIn = (
+    formState: UseFormTypes['formState'],
+    setFieldError: UseFormTypes['setFieldError'],
+    resetErrors: UseFormTypes['resetErrors']
+) => {
+    resetErrors();
+
+    if (!validateName(formState.name)) {
+        setFieldError('name', 'Введите название команды!');
+        return false;
+    }
+    
+    if (!validateTeamPlayers(formState.name)) {
+        setFieldError('teamPlayers', 'В поле слишком мало символов!');
         return false;
     }
 

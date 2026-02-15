@@ -76,7 +76,11 @@ let MOCK_FROMCLUB = {
                 max_teams: 8,
                 registered_teams: 8,
                 status: "past",
-                avatar: 'https://i.pravatar.cc/150?img=4'
+                avatar: 'https://i.pravatar.cc/150?img=4',
+                winners: {
+                    teamName:'крутая тима',
+                    teamPlayers: 'player1, player2, player3, plm, ppp'
+                }
             }
         ]
     },

@@ -51,6 +51,11 @@ export type Tournament = {
     registered_teams: number;
     status: 'past' | 'future';
     avatar: string;
+    winners: {
+        teamName: string,
+        teamPlayers: string
+    }
+    onSignIn: (fromAccountId: number, teamName: string, teamPlayers: string) => void;
 }
 
 export interface TournamentsData {
