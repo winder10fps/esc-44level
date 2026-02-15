@@ -58,22 +58,35 @@ export interface TournamentsData {
     past: Tournament[];
 }
 
+
+type CardPrice = {
+    hour: string;
+    day: string;
+    night: string;
+}
+
+
 export type CatalogCardType = {
     id: number;
     heading: string;
     photo: string;
-    line?: number;
+    line?: string;
     specifications: {
         processor?: string;
         viedocard?: string;
         resolution?: string;
-        refreshRate?: number;
-        screen?: number;
+        refreshRate?: string;
+        screen?: string;
         audioSystem?: string;
-        helmets?: number;
+        helmets?: string;
         quantity?: string;
-        price?: number;
-    }
+        price?: string | CardPrice;
+        ram?: string;
+        keyboard?: string;
+        headphones?: string;
+        ageLimit?: string;
+    },
+    description: string;
 }
 
 export interface CatalogData {
@@ -103,5 +116,5 @@ export interface AuthContextType {
     refreshUserData: () => Promise<void>;
     clearAuthError: () => void;
     fetchAllTournaments: () => Promise<TournamentsData>;
-    fetchAllCatalogCards: () => Promise<CatalogData>
+    fetchAllCatalogCards: () => Promise<CatalogData>;
 }

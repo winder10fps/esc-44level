@@ -27,20 +27,26 @@ const CatalogCard: React.FC<CatalogCardProps> = ({ card, variant }) => {
     const helmets = cardSecifications.helmets
 
     const quantity = cardSecifications.quantity
-    const price = cardSecifications.price
+    const price = cardSecifications.price?.toString()
 
     const handlePreviewProduct = () => {
         router.push({
             pathname: '/screens/CatalogPreviewScreen',
             params: {
-                heading: card.heading
+                heading: card.heading,
+                id: card.id.toString(),
+                variant: variant
             }
         })
     }
 
+    const imageSource = card.photo
+        ? { uri: card.photo }
+        : require('@/assets/images/logo.png');
+
     return (
         <TouchableOpacity style={styles.cardContainer} onPress={handlePreviewProduct}>
-            <Image source={{ uri: card.photo }} style={styles.image} />
+            <Image source={imageSource} style={styles.image} />
             <View style={styles.cardTextContent}>
                 <View style={styles.row}>
                     <CustomText variant="h4">{card.heading}</CustomText>

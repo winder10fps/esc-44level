@@ -67,12 +67,12 @@ const NavigationSection = () => {
 const styles = StyleSheet.create({
     navigateDoubleRow: {
         flexDirection: 'row',
-        gap: 16
+        gap: 8
     },
     navigateSection: {
         marginVertical: 32,
         marginHorizontal: 8,
-        gap: 16
+        gap: 8
     }
 })
 

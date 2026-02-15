@@ -1,4 +1,4 @@
-import { FlatList, ListRenderItem, RefreshControl, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, FlatList, ListRenderItem, RefreshControl, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { COLORS } from '../../constants/ui';
 import { useUpdateTabs } from '@/hooks/useUpdateTabs';
@@ -47,7 +47,6 @@ const Catalog = () => {
         />
     );
 
-
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar barStyle={"light-content"} />
@@ -68,36 +67,48 @@ const Catalog = () => {
                 <View style={styles.productSections}>
                     <SectionContainer>
                         <CustomText variant='h2' style={styles.sectionHeading}>Компьютеры</CustomText>
-                        <FlatList
-                            data={computerCards}
-                            renderItem={renderComputerOrPsCards}
-                            keyExtractor={(item) => item.id.toString()}
-                            scrollEnabled={false}
-                            numColumns={2}
-                            columnWrapperStyle={styles.columnWrapper}
-                        />
+                        {loading ? (
+                            <ActivityIndicator size={'small'} color={COLORS.GRAY} />
+                        ) : (
+                            <FlatList
+                                data={computerCards}
+                                renderItem={renderComputerOrPsCards}
+                                keyExtractor={(item) => item.id.toString()}
+                                scrollEnabled={false}
+                                numColumns={2}
+                                columnWrapperStyle={styles.columnWrapper}
+                            />
+                        )}
                     </SectionContainer>
                     <SectionContainer>
                         <CustomText variant='h2' style={styles.sectionHeading}>PS5 & VR</CustomText>
-                        <FlatList
-                            data={psCards}
-                            renderItem={renderComputerOrPsCards}
-                            keyExtractor={(item) => item.id.toString()}
-                            scrollEnabled={false}
-                            numColumns={2}
-                            columnWrapperStyle={styles.columnWrapper}
-                        />
+                        {loading ? (
+                            <ActivityIndicator size={'small'} color={COLORS.GRAY} />
+                        ) : (
+                            <FlatList
+                                data={psCards}
+                                renderItem={renderComputerOrPsCards}
+                                keyExtractor={(item) => item.id.toString()}
+                                scrollEnabled={false}
+                                numColumns={2}
+                                columnWrapperStyle={styles.columnWrapper}
+                            />
+                        )}
                     </SectionContainer>
                     <SectionContainer>
                         <CustomText variant='h2' style={styles.sectionHeading}>Бар</CustomText>
-                        <FlatList
-                            data={barCards}
-                            renderItem={renderBarCards}
-                            keyExtractor={(item) => item.id.toString()}
-                            scrollEnabled={false}
-                            numColumns={2}
-                            columnWrapperStyle={styles.columnWrapper}
-                        />
+                        {loading ? (
+                            <ActivityIndicator size={'small'} color={COLORS.GRAY} />
+                        ) : (
+                            <FlatList
+                                data={barCards}
+                                renderItem={renderBarCards}
+                                keyExtractor={(item) => item.id.toString()}
+                                scrollEnabled={false}
+                                numColumns={2}
+                                columnWrapperStyle={styles.columnWrapper}
+                            />
+                        )}
                     </SectionContainer>
                 </View>
             </ScrollView>

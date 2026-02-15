@@ -4,15 +4,16 @@ import { ScrollViewProps, View, ViewProps } from "react-native";
 
 type SectionContainerProps = ViewProps & ScrollViewProps;
 
-const SectionContainer: React.FC<SectionContainerProps> = ({ children }) => {
+const SectionContainer: React.FC<SectionContainerProps> = ({ children, style }) => {
     return (
-        <View style={{
+        <View style={[{
             paddingVertical: 24,
             paddingHorizontal: 8,
             marginHorizontal: 8,
             backgroundColor: COLORS.SECTION_BACKGROUND,
-            borderRadius: 25
-        }}>
+            borderRadius: 25,
+            
+        }, style]}>
             {children}
         </View>
     )
