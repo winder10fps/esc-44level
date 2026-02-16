@@ -42,7 +42,7 @@ export default function TournamentsScreen({ refreshKey = 0 }: TournamentScreenPr
             game={item.game}
             caption={item.caption}
             max_teams={item.max_teams}
-            registered_teams={item.registered_teams}
+            registered_teams={item.registered_teams.length}
         />
     );
 

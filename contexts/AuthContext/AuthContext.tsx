@@ -1,6 +1,7 @@
 import React, { createContext, useState, useContext, useEffect, ReactNode, useCallback } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AuthContextType, AuthError, AuthResponse, CatalogData, LoginCredentials, RegisterData, ResetPasswordCredentials, TournamentsData, User } from './AuthContextInterfaces';
+import { MOCK_FROMCLUB, MOCK_USERS } from '@/constants/fromServer_MOCK';
 
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -10,170 +11,6 @@ const STORAGE_KEYS = {
     TOKEN: 'auth_token',
     REFRESH_TOKEN: 'auth_refresh_token',
 };
-
-// заглушки
-let MOCK_USERS: User[] = [
-    {
-        id: '1',
-        email: 'user@example.com',
-        password: 'pass1234',
-        name: 'Иван Иванов',
-        avatar: 'https://i.pravatar.cc/150?img=1',
-        level: 56,
-        hours: 120,
-        notifs: [
-            { id: 1, title: 'Добро пожаловать!', message: 'Вы успешно зарегистрировались', read: false },
-            { id: 2, title: 'Новый турнир', message: 'Зарегистрируйтесь на ближайший турнир', read: true }
-        ],
-        booking: [{
-            pc: 1,
-            time: '19:00',
-            busyWithMe: false,
-        }]
-    },
-];
-
-let MOCK_FROMCLUB = {
-    tournaments: {
-        future: [
-            {
-                id: 3,
-                name: "Киберспринт: Valorant Open Cup",
-                game: "Valorant",
-                date: "2024-03-15",
-                time: "18:00",
-                caption: "турнир турнир турнир турнир турнир турнир турнир турниртурниртурниртурниртурниртурнир",
-                prize_pool: "50 000 ₽",
-                max_teams: 16,
-                registered_teams: 12,
-                status: "future",
-                avatar: 'https://i.pravatar.cc/150?img=2'
-            },
-            {
-                id: 2,
-                name: "Dota 2 Battle Royal",
-                game: "Dota 2",
-                date: "2024-03-20",
-                time: "17:30",
-                caption: "турнир турнир турнир турнир турнир турнир турнир турниртурниртурниртурниртурниртурнир",
-                prize_pool: "75 000 ₽",
-                max_teams: 8,
-                registered_teams: 8,
-                status: "future",
-                avatar: 'https://i.pravatar.cc/150?img=3'
-            },
-
-        ],
-        past: [
-            {
-                id: 1,
-                name: "Royal",
-                game: "Dota 6",
-                date: "2024-03-20",
-                time: "17:30",
-                caption: "турнир турнир турнир турнир турнир турнир турнир турниртурниртурниртурниртурниртурнир",
-                prize_pool: "75 000 ₽",
-                max_teams: 8,
-                registered_teams: 8,
-                status: "past",
-                avatar: 'https://i.pravatar.cc/150?img=4',
-                winners: {
-                    teamName:'крутая тима',
-                    teamPlayers: 'player1, player2, player3, plm, ppp'
-                }
-            }
-        ]
-    },
-    catalog: {
-        computers: [
-            {
-                id: 1,
-                heading: 'ПК 1-10',
-                photo: 'https://static.insales-cdn.com/images/articles/1/1550/1418766/api.jpg',
-                line: '1',
-                specifications: {
-                    processor: '11400F',
-                    viedocard: 'GTX 1060',
-                    ram: '16 ГБ DDR4, 3200 МГц',
-                    resolution: '1920x1080',
-                    refreshRate: '144 гц',
-                    keyboard: 'Механическая, 87 клавиш',
-                    headphones: 'HyperX Cloud II',
-                    ageLimit: 'Нет',
-                    price: {
-                        hour: '90',
-                        day: '650',
-                        night: '400'
-                    }
-                },
-                description: 'Идеальная отправная точка в мир современных игр. Игровая линия LINE-1 создана для тех, кто ценит стабильность и плавный геймплей в популярном разрешении Full HD. Это сбалансированное и доступное решение, обеспечивающее комфортную игру в киберспортивные и многие сюжетные проекты. Полная комплектация с быстрым монитором, механической клавиатурой и качественной акустикой позволит с головой погрузиться в игровую вселенную с первого включения.'
-            },
-            {
-                id: 2,
-                heading: 'ПК 11-20',
-                photo: 'https://static.insales-cdn.com/images/articles/1/1550/1418766/api.jpg',
-                line: '2',
-                specifications: {
-                    processor: '11400F',
-                    viedocard: 'GTX 1060',
-                    ram: '16 ГБ DDR4, 3200 МГц',
-                    resolution: '1920x1080',
-                    refreshRate: '144 гц',
-                    keyboard: 'Механическая, 87 клавиш',
-                    headphones: 'HyperX Cloud II',
-                    ageLimit: 'Нет',
-                    price: {
-                        hour: '90',
-                        day: '650',
-                        night: '400'
-                    },
-                },
-                description: 'Идеальная отправная точка в мир современных игр. Игровая линия LINE-2 создана для тех, кто ценит стабильность и плавный геймплей в популярном разрешении Full HD. Это сбалансированное и доступное решение, обеспечивающее комфортную игру в киберспортивные и многие сюжетные проекты. Полная комплектация с быстрым монитором, механической клавиатурой и качественной акустикой позволит с головой погрузиться в игровую вселенную с первого включения.'
-            },
-        ],
-        PSAndVR: [
-            {
-                id: 3,
-                heading: 'Playstation 5',
-                photo: '',
-                specifications: {
-                    screen: '130',
-                    audioSystem: '5.1 dolby digital',
-                },
-                description: 'Идеальная отправная точка в мир современных игр. Игровая линия ps5 создана для тех, кто ценит стабильность и плавный геймплей в популярном разрешении Full HD. Это сбалансированное и доступное решение, обеспечивающее комфортную игру в киберспортивные и многие сюжетные проекты. Полная комплектация с быстрым монитором, механической клавиатурой и качественной акустикой позволит с головой погрузиться в игровую вселенную с первого включения.'
-            }
-        ],
-        bar: [
-            {
-                id: 4,
-                heading: 'Sprite',
-                photo: '',
-                specifications: {
-                    quantity: '100 г',
-                    price: '34'
-                },
-                description: 'Идеальная отправная точка в мир современных игр. Игровая линия sprite создана для тех, кто ценит стабильность и плавный геймплей в популярном разрешении Full HD. Это сбалансированное и доступное решение, обеспечивающее комфортную игру в киберспортивные и многие сюжетные проекты. Полная комплектация с быстрым монитором, механической клавиатурой и качественной акустикой позволит с головой погрузиться в игровую вселенную с первого включения.'
-            },
-            {
-                id: 5,
-                heading: 'Добрый кола',
-                photo: '',
-                specifications: {
-                    quantity: '100 г',
-                    price: '34'
-                },
-                description: 'Идеальная отправная точка в мир современных игр. Игровая линия cola создана для тех, кто ценит стабильность и плавный геймплей в популярном разрешении Full HD. Это сбалансированное и доступное решение, обеспечивающее комфортную игру в киберспортивные и многие сюжетные проекты. Полная комплектация с быстрым монитором, механической клавиатурой и качественной акустикой позволит с головой погрузиться в игровую вселенную с первого включения.'
-            }
-        ]
-    },
-    booking: {
-        pc1: '19:00', // забронен на 19
-        pc2: '+', // занят
-        pc3: '-', // свободен
-        // ...
-    }
-}
-
 
 // Моковый токен, должен приходить с сервера
 const generateMockToken = (userId: string): string => {
@@ -200,8 +37,6 @@ const fetchUserFromServer = async (userId: string): Promise<User | null> => {
         password: foundUser.password,
         name: foundUser.name,
         avatar: foundUser.avatar,
-        role: foundUser.role,
-        level: foundUser.level ?? 1,
         hours: foundUser.hours ?? 0,
         notifs: foundUser.notifs ?? [],
         booking: foundUser.booking
@@ -227,8 +62,6 @@ const updateUserOnServer = async (userId: string, userData: Partial<User>): Prom
         password: foundUser.password,
         name: foundUser.name,
         avatar: foundUser.avatar,
-        role: foundUser.role,
-        level: foundUser.level ?? 1,
         hours: foundUser.hours ?? 0,
         notifs: foundUser.notifs ?? [],
         booking: foundUser.booking
@@ -451,7 +284,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                 email: data.email,
                 password: data.password,
                 name: data.name,
-                level: 1,
                 hours: 0,
                 notifs: [],
                 booking: [],
@@ -649,6 +481,16 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         return catalog as CatalogData;
     }, []);
 
+    const getLevelProgress = () => {
+        const userLevel = user?.hours ? user?.hours / 5 : 0
+        if (userLevel) {
+            return Math.round(userLevel % 1 * 100)
+        }
+        return 0
+    }
+    const userLevel = user?.hours ? Math.floor(user?.hours / 5) : 0
+    const levelProgress = getLevelProgress();
+
     const value: AuthContextType = {
         user,
         token,
@@ -664,7 +506,9 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         refreshUserData,
         clearAuthError,
         fetchAllTournaments,
-        fetchAllCatalogCards
+        fetchAllCatalogCards,
+        userLevel,
+        levelProgress
     };
 
     return (

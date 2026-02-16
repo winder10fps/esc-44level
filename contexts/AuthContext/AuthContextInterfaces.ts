@@ -1,20 +1,18 @@
+// User 
 export interface User {
     id: string;
     email: string;
     password: string;
     name: string;
     avatar?: string;
-    level: number;
     hours: number;
     notifs: any[];
-    role?: string;
     booking: any[]
 }
 
 export interface LoginCredentials {
     email: string;
     password: string;
-    rememberMe?: boolean;
 }
 
 export interface ResetPasswordCredentials {
@@ -39,23 +37,28 @@ export interface AuthError {
     field?: 'email' | 'password' | 'general';
 }
 
+export interface Notif {
+    id: number;
+    title: string;
+    message: string;
+}
+
+
+// Tournaments
 export type Tournament = {
     id: number;
     name: string;
     game: string;
-    date: string;
-    time: string;
     caption: string;
-    prize_pool: string;
     max_teams: number;
-    registered_teams: number;
+    registered_teams: string[];
     status: 'past' | 'future';
     avatar: string;
-    winners: {
+    winners?: {
         teamName: string,
         teamPlayers: string
     }
-    onSignIn: (fromAccountId: number, teamName: string, teamPlayers: string) => void;
+    onSignIn?: (fromAccountId: number, teamName: string, teamPlayers: string) => void;
 }
 
 export interface TournamentsData {
@@ -64,12 +67,12 @@ export interface TournamentsData {
 }
 
 
+// Catalog
 type CardPrice = {
     hour: string;
     day: string;
     night: string;
 }
-
 
 export type CatalogCardType = {
     id: number;
@@ -100,12 +103,8 @@ export interface CatalogData {
     bar: CatalogCardType[];
 }
 
-export interface Notif {
-    id: number;
-    title: string;
-    message: string;
-}
 
+// Context
 export interface AuthContextType {
     user: User | null;
     token: string | null;
@@ -122,4 +121,6 @@ export interface AuthContextType {
     clearAuthError: () => void;
     fetchAllTournaments: () => Promise<TournamentsData>;
     fetchAllCatalogCards: () => Promise<CatalogData>;
+    levelProgress: number,
+    userLevel: number
 }

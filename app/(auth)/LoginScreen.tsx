@@ -17,7 +17,6 @@ export default function LoginScreen() {
 
     const email = formState.email;
     const password = formState.password;
-    const rememberMe = true;
 
     const { login, authError, clearAuthError } = useAuth()
 
@@ -30,7 +29,7 @@ export default function LoginScreen() {
 
     const onLogin = () => {
         if (validateLogin(formState, setFieldError, resetErrors)) {
-            login({ email, password, rememberMe });
+            login({ email, password });
         }
     };
 
@@ -78,7 +77,7 @@ export default function LoginScreen() {
                 />
                 <CustomTextButton
                     variant="onlyText"
-                    size="default"
+                    size="notPadding"
                     label="Забыли пароль?"
                     onPress={onResetPassword}
                     style={styles.resetButton}

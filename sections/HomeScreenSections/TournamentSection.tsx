@@ -1,8 +1,8 @@
 import CustomText from "@/components/CustomText";
 import CustomTextButton from "@/components/CustomTextButton";
 import { COLORS } from "@/constants/ui";
-import { Tournament } from "@/constants/withServer";
 import { useAuth } from "@/contexts/AuthContext/AuthContext";
+import { Tournament } from "@/contexts/AuthContext/AuthContextInterfaces";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
 import { ActivityIndicator, FlatList, ListRenderItem, StyleSheet, View } from "react-native";

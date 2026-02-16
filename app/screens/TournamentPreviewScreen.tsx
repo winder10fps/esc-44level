@@ -59,12 +59,12 @@ export default function TournamentSignInScreen() {
                         <CustomText variant='h2' style={styles.name}>{tournament?.name}</CustomText>
                         {tournament?.status === 'past' && (
                             <View style={[styles.tournamentInfoSection, { marginBottom: 24 }]}>
-                                <CustomText variant='h2' style={styles.winnersHeading}>{tournament.winners.teamName}</CustomText>
+                                <CustomText variant='h2' style={styles.winnersHeading}>{tournament.winners?.teamName}</CustomText>
                                 <CustomText
                                     variant='primary'
                                 >
                                     <Text style={styles.grayText}>Сотав команды победителей: </Text>
-                                    {tournament.winners.teamPlayers}
+                                    {tournament.winners?.teamPlayers}
                                 </CustomText>
                             </View>
                         )}
@@ -73,7 +73,7 @@ export default function TournamentSignInScreen() {
                                 Игра: <Text style={styles.whiteText}>{tournament?.game}</Text>
                             </CustomText>
                             <CustomText variant='primary' style={styles.grayText}>
-                                Участников: <Text style={styles.whiteText}>{tournament?.registered_teams} из {tournament?.max_teams}</Text>
+                                Участников: <Text style={styles.whiteText}>{tournament?.registered_teams.length} из {tournament?.max_teams}</Text>
                             </CustomText>
                             <CustomText variant='primary' style={styles.grayText}>{tournament?.caption}</CustomText>
                         </View>

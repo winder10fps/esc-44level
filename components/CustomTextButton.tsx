@@ -5,7 +5,7 @@ import CustomText from "./CustomText";
 
 type CustomTextButtonProps = TouchableOpacityProps & {
     label: string;
-    size: 'default' | 'big' | 'mini';
+    size: 'default' | 'big' | 'mini' | 'notPadding';
     variant: 'primary' | 'secondary' | 'onlyText';
     disabled?: boolean;
 }
@@ -47,6 +47,7 @@ const CustomTextButton: React.FC<CustomTextButtonProps> = ({
                     size === 'default' && styles.default,
                     size === 'big' && styles.big,
                     size === 'mini' && styles.mini,
+                    size === 'notPadding' && styles.onlyText
                 ]}
             >
                 {label}

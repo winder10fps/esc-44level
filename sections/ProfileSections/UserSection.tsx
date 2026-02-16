@@ -10,7 +10,7 @@ const UserSection = () => {
 
     const [avatarFullScreen, setAvatarFullScreen] = useState(false)
 
-    const {user} = useAuth()
+    const {user, userLevel} = useAuth()
 
     return (
         <View style={styles.sectionContainer}>
@@ -28,7 +28,7 @@ const UserSection = () => {
             </View>
             <View style={styles.bottomElements}>
                 <View style={styles.elementContainer}>
-                    <CustomText style={styles.elementNumber}>{user?.level}</CustomText>
+                    <CustomText style={styles.elementNumber}>{userLevel}</CustomText>
                     <CustomText style={styles.grayText} variant="primary">Level</CustomText>
                 </View>
                 <View style={styles.elementContainer}>
