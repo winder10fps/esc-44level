@@ -1,4 +1,4 @@
-import FilterIcon from "@/assets/icons/Filtericon";
+import SearchIcon from "@/assets/icons/SearchIcon";
 import CustomTextInput from "@/components/CustomTextInput";
 import { COLORS } from "@/constants/ui";
 import { StyleSheet, TouchableOpacity, View } from "react-native"
@@ -8,8 +8,8 @@ const SearchSection = () => {
     return (
         <View style={styles.searchSection}>
             <CustomTextInput placeholder='Поиск' style={styles.searchInput} />
-            <TouchableOpacity style={styles.filterButton}>
-                <FilterIcon />
+            <TouchableOpacity style={styles.iconButton}>
+                <SearchIcon />
             </TouchableOpacity>
         </View>
     )
@@ -19,13 +19,13 @@ const SearchSection = () => {
 const styles = StyleSheet.create({
     searchSection: {
         flexDirection: 'row',
-        gap: 8,
-        marginHorizontal: 8
+        marginHorizontal: 8,
+        gap: 8
     },
     searchInput: {
-        flex: 1
+        flex: 1,
     },
-    filterButton: {
+    iconButton: {
         backgroundColor: COLORS.CARD_BACKGROUND,
         width: 56,
         borderRadius: 25,

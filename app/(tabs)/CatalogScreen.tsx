@@ -5,11 +5,10 @@ import { useUpdateTabs } from '@/hooks/useUpdateTabs';
 import CustomText from '@/components/CustomText';
 import SectionContainer from '@/components/SectionContainer';
 import NavigationSection from '@/sections/CatalogSections/NavigationSection';
-import SearchSection from '@/sections/CatalogSections/SearchSection';
 import { CatalogCardType } from '@/contexts/AuthContext/AuthContextInterfaces';
 import CatalogCard from '@/components/CatalogCard';
 import { useAuth } from '@/contexts/AuthContext/AuthContext';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 
 const Catalog = () => {
@@ -19,6 +18,11 @@ const Catalog = () => {
     const [psCards, setPsCards] = useState<CatalogCardType[]>([]);
     const [barCards, setBarCards] = useState<CatalogCardType[]>([]);
     const [loading, setLoading] = useState(false);
+
+    const computersRef = useRef<View | null>(null);
+    const psRef = useRef<View | null>(null);
+    const barRef = useRef<View | null>(null);
+    const scrollViewRef = useRef<ScrollView>(null);
 
     useEffect(() => {
         const loadCards = async () => {
@@ -47,10 +51,20 @@ const Catalog = () => {
         />
     );
 
+    const scrollToSection = (ref: React.RefObject<View | null>) => {
+        if (ref.current && scrollViewRef.current) {
+            ref.current.measure((...args) => {
+                const pageY = args[5]
+                scrollViewRef.current?.scrollTo({ y: pageY, animated: true });
+            });
+        }
+    };
+
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar barStyle={"light-content"} />
             <ScrollView
+                ref={scrollViewRef}
                 showsVerticalScrollIndicator={false}
                 refreshControl={
                     <RefreshControl
@@ -62,54 +76,70 @@ const Catalog = () => {
                 }
             >
                 <CustomText variant='h1' style={styles.heading}>Каталог</CustomText>
-                <SearchSection />
-                <NavigationSection />
+
+                <NavigationSection
+                    onNavigateToBar={() => scrollToSection(barRef)}
+                    onNavigateToComputers={() => scrollToSection(computersRef)}
+                    onNavigateToPS={() => scrollToSection(psRef)}
+                />
+
                 <View style={styles.productSections}>
-                    <SectionContainer>
-                        <CustomText variant='h2' style={styles.sectionHeading}>Компьютеры</CustomText>
-                        {loading ? (
-                            <ActivityIndicator size={'small'} color={COLORS.GRAY} />
-                        ) : (
-                            <FlatList
-                                data={computerCards}
-                                renderItem={renderComputerOrPsCards}
-                                keyExtractor={(item) => item.id.toString()}
-                                scrollEnabled={false}
-                                numColumns={2}
-                                columnWrapperStyle={styles.columnWrapper}
-                            />
-                        )}
-                    </SectionContainer>
-                    <SectionContainer>
-                        <CustomText variant='h2' style={styles.sectionHeading}>PS5 & VR</CustomText>
-                        {loading ? (
-                            <ActivityIndicator size={'small'} color={COLORS.GRAY} />
-                        ) : (
-                            <FlatList
-                                data={psCards}
-                                renderItem={renderComputerOrPsCards}
-                                keyExtractor={(item) => item.id.toString()}
-                                scrollEnabled={false}
-                                numColumns={2}
-                                columnWrapperStyle={styles.columnWrapper}
-                            />
-                        )}
-                    </SectionContainer>
-                    <SectionContainer>
-                        <CustomText variant='h2' style={styles.sectionHeading}>Бар</CustomText>
-                        {loading ? (
-                            <ActivityIndicator size={'small'} color={COLORS.GRAY} />
-                        ) : (
-                            <FlatList
-                                data={barCards}
-                                renderItem={renderBarCards}
-                                keyExtractor={(item) => item.id.toString()}
-                                scrollEnabled={false}
-                                numColumns={2}
-                                columnWrapperStyle={styles.columnWrapper}
-                            />
-                        )}
-                    </SectionContainer>
+                    {/* Компьютеры секция */}
+                    <View ref={computersRef} collapsable={false}>
+                        <SectionContainer>
+                            <CustomText variant='h2' style={styles.sectionHeading}>Компьютеры</CustomText>
+                            {loading ? (
+                                <ActivityIndicator size={'small'} color={COLORS.GRAY} />
+                            ) : (
+                                <FlatList
+                                    data={computerCards}
+                                    renderItem={renderComputerOrPsCards}
+                                    keyExtractor={(item) => item.id.toString()}
+                                    scrollEnabled={false}
+                                    numColumns={2}
+                                    columnWrapperStyle={styles.columnWrapper}
+                                />
+                            )}
+                        </SectionContainer>
+                    </View>
+
+                    {/* PS5 & VR секция */}
+                    <View ref={psRef} collapsable={false}>
+                        <SectionContainer>
+                            <CustomText variant='h2' style={styles.sectionHeading}>PS5 & VR</CustomText>
+                            {loading ? (
+                                <ActivityIndicator size={'small'} color={COLORS.GRAY} />
+                            ) : (
+                                <FlatList
+                                    data={psCards}
+                                    renderItem={renderComputerOrPsCards}
+                                    keyExtractor={(item) => item.id.toString()}
+                                    scrollEnabled={false}
+                                    numColumns={2}
+                                    columnWrapperStyle={styles.columnWrapper}
+                                />
+                            )}
+                        </SectionContainer>
+                    </View>
+
+                    {/* Бар секция */}
+                    <View ref={barRef} collapsable={false}>
+                        <SectionContainer>
+                            <CustomText variant='h2' style={styles.sectionHeading}>Бар</CustomText>
+                            {loading ? (
+                                <ActivityIndicator size={'small'} color={COLORS.GRAY} />
+                            ) : (
+                                <FlatList
+                                    data={barCards}
+                                    renderItem={renderBarCards}
+                                    keyExtractor={(item) => item.id.toString()}
+                                    scrollEnabled={false}
+                                    numColumns={2}
+                                    columnWrapperStyle={styles.columnWrapper}
+                                />
+                            )}
+                        </SectionContainer>
+                    </View>
                 </View>
             </ScrollView>
         </SafeAreaView>
@@ -124,7 +154,6 @@ const styles = StyleSheet.create({
     },
     heading: {
         marginTop: 8,
-        marginBottom: 24,
         marginLeft: 16
     },
     productSections: {

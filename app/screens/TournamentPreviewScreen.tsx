@@ -12,6 +12,7 @@ import CustomCheckbox from '@/components/CustomCheckbox';
 import CustomTextButton from '@/components/CustomTextButton';
 import { useForm } from '@/hooks/useForm';
 import { validateTournamentSignIn } from '@/functions/validation';
+import ChampionCupIcon from '@/assets/icons/ChampionCupIcon';
 
 export default function TournamentSignInScreen() {
     const params = useLocalSearchParams();
@@ -59,6 +60,7 @@ export default function TournamentSignInScreen() {
                         <CustomText variant='h2' style={styles.name}>{tournament?.name}</CustomText>
                         {tournament?.status === 'past' && (
                             <View style={[styles.tournamentInfoSection, { marginBottom: 24 }]}>
+                                <ChampionCupIcon style={{alignSelf: 'center'}}/>
                                 <CustomText variant='h2' style={styles.winnersHeading}>{tournament.winners?.teamName}</CustomText>
                                 <CustomText
                                     variant='primary'
