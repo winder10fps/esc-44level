@@ -12,3 +12,7 @@ export const FONT_FAMILIES = {
     ROBOTO: "Roboto",
     ROBOTO_CONDENSED: 'Roboto-Condensed'
 }
+
+export const TOUCHABLE_OPACITY = {
+    OPACITY: 0.8
+}

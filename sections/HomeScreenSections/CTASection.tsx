@@ -2,7 +2,7 @@ import CustomText from "@/components/CustomText";
 import CustomTextButton from "@/components/CustomTextButton";
 import SemiCircleProgress from "@/components/SemiCircleProgress";
 import { COLORS, FONT_FAMILIES } from "@/constants/ui";
-import { useAuth } from "@/contexts/AuthContext/AuthContext";
+import { useAuth } from "@/contexts/auth";
 import { useChangePage } from "@/functions/navigation";
 import { StyleSheet, Text, View } from "react-native";
 

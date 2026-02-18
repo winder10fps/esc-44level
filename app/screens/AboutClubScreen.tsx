@@ -1,7 +1,7 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import StackScreen from '@/components/StackScreen';
 import CustomText from '@/components/CustomText';
-import { COLORS } from '@/constants/ui';
+import { COLORS, TOUCHABLE_OPACITY } from '@/constants/ui';
 import FullScreenImageModal from '@/components/FullScreenImageModal';
 import { useState } from 'react';
 
@@ -31,7 +31,10 @@ export default function AboutClubScreen() {
                 </CustomText>
             </View>
             <View>
-                <TouchableOpacity onPress={() => setFullScreenTopImage(true)}>
+                <TouchableOpacity
+                    activeOpacity={TOUCHABLE_OPACITY.OPACITY}
+                    onPress={() => setFullScreenTopImage(true)}
+                >
                     <Image
                         source={images[2].source}
                         style={styles.image}
@@ -70,6 +73,7 @@ export default function AboutClubScreen() {
                 {images.slice(0, 2).map((image) => (
                     <TouchableOpacity
                         key={image.id}
+                        activeOpacity={TOUCHABLE_OPACITY.OPACITY}
                         onPress={() => openImage(image.source)}
                     >
                         <Image

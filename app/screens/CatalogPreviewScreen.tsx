@@ -1,13 +1,13 @@
 import { ActivityIndicator, Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import StackScreen from '@/components/StackScreen';
 import { router, useLocalSearchParams } from 'expo-router';
-import { useAuth } from '@/contexts/AuthContext/AuthContext';
 import { useEffect, useState } from 'react';
-import { CatalogCardType } from '@/contexts/AuthContext/AuthContextInterfaces';
-import { COLORS } from '@/constants/ui';
+import { COLORS, TOUCHABLE_OPACITY } from '@/constants/ui';
 import FullScreenImageModal from '@/components/FullScreenImageModal';
 import CustomText from '@/components/CustomText';
 import CustomTextButton from '@/components/CustomTextButton';
+import { useAuth } from '@/contexts/auth';
+import { CatalogCardType } from '../../contexts/auth/types';
 
 export default function CatalogPreviewScreen() {
     const params = useLocalSearchParams();
@@ -94,7 +94,10 @@ export default function CatalogPreviewScreen() {
                 <View style={styles.contentContainer}>
                     {card?.photo !== '' && card?.photo &&
                         <>
-                            <TouchableOpacity onPress={() => setIsProductPhotoOpen(true)}>
+                            <TouchableOpacity
+                                onPress={() => setIsProductPhotoOpen(true)}
+                                activeOpacity={TOUCHABLE_OPACITY.OPACITY}
+                            >
                                 <Image
                                     source={{ uri: card?.photo }}
                                     style={styles.image}

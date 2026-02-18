@@ -1,7 +1,8 @@
 import BellIcon from "@/assets/icons/BellIcon";
 import CallingPhoneIcon from "@/assets/icons/CallingPhoneIcon";
 import CustomText from "@/components/CustomText";
-import { useAuth } from "@/contexts/AuthContext/AuthContext";
+import { TOUCHABLE_OPACITY } from "@/constants/ui";
+import { useAuth } from "@/contexts/auth";
 import { useChangePage } from "@/functions/navigation";
 import { router } from "expo-router";
 import { Image, Linking, StyleSheet, TouchableOpacity, View } from "react-native";
@@ -25,11 +26,15 @@ const HeaderSection = () => {
         router.push('/screens/NotifScreen');
     }
 
-    const {user} = useAuth();
+    const { user } = useAuth();
 
     return (
         <View style={styles.sectionContainer}>
-            <TouchableOpacity style={styles.profileInfo} onPress={goProfile}>
+            <TouchableOpacity
+                style={styles.profileInfo}
+                activeOpacity={TOUCHABLE_OPACITY.OPACITY}
+                onPress={goProfile}
+            >
                 <Image
                     source={{
                         uri: user?.avatar
@@ -39,10 +44,16 @@ const HeaderSection = () => {
                 <CustomText variant="h3">{user?.name}</CustomText>
             </TouchableOpacity>
             <View style={styles.buttons}>
-                <TouchableOpacity onPress={handleNotifs}>
+                <TouchableOpacity
+                activeOpacity={TOUCHABLE_OPACITY.OPACITY}
+                    onPress={handleNotifs}
+                >
                     <BellIcon />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={handleCall}>
+                <TouchableOpacity
+                activeOpacity={TOUCHABLE_OPACITY.OPACITY}
+                    onPress={handleCall}
+                >
                     <CallingPhoneIcon />
                 </TouchableOpacity>
             </View>

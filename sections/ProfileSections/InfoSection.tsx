@@ -3,7 +3,7 @@ import CustomText from "@/components/CustomText";
 import CustomTextButton from "@/components/CustomTextButton";
 import LinkInProfileSection from "@/components/LinkInProfileSection";
 import { COLORS } from "@/constants/ui";
-import { useAuth } from "@/contexts/AuthContext/AuthContext";
+import { useAuth } from "@/contexts/auth";
 import { router } from "expo-router";
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";

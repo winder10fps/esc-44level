@@ -1,11 +1,11 @@
 import { ActivityIndicator, FlatList, ListRenderItem, StyleSheet, View } from 'react-native';
 import StackScreen from '@/components/StackScreen';
-import { useAuth } from '@/contexts/AuthContext/AuthContext';
 import { useEffect, useState } from 'react';
-import { Tournament } from '@/contexts/AuthContext/AuthContextInterfaces';
 import CustomText from '@/components/CustomText';
 import { COLORS } from '@/constants/ui';
 import TournamentCard from '@/components/TournamentCard';
+import { Tournament } from '../../contexts/auth/types';
+import { useAuth } from '@/contexts/auth';
 
 type TournamentScreenProps = {
     refreshKey: number;

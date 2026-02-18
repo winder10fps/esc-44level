@@ -1,10 +1,10 @@
 import { FlatList, ListRenderItem, RefreshControl, ScrollView, StyleSheet, View } from 'react-native';
 import StackScreen from '@/components/StackScreen';
-import { useAuth } from '@/contexts/AuthContext/AuthContext';
 import CustomText from '@/components/CustomText';
 import { COLORS } from '@/constants/ui';
-import { Notif } from '@/contexts/AuthContext/AuthContextInterfaces';
 import { useUpdateTabs } from '@/hooks/useUpdateTabs';
+import { Notif } from '../../contexts/auth/types';
+import { useAuth } from '@/contexts/auth';
 
 export default function NotifScreen() {
     const { user } = useAuth()

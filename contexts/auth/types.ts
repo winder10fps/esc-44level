@@ -1,4 +1,3 @@
-// User 
 export interface User {
     id: string;
     email: string;
@@ -43,7 +42,6 @@ export interface Notif {
     message: string;
 }
 
-
 // Tournaments
 export type Tournament = {
     id: number;
@@ -65,7 +63,6 @@ export interface TournamentsData {
     future: Tournament[];
     past: Tournament[];
 }
-
 
 // Catalog
 type CardPrice = {
@@ -103,7 +100,6 @@ export interface CatalogData {
     bar: CatalogCardType[];
 }
 
-
 // Context
 export interface AuthContextType {
     user: User | null;
@@ -121,6 +117,6 @@ export interface AuthContextType {
     clearAuthError: () => void;
     fetchAllTournaments: () => Promise<TournamentsData>;
     fetchAllCatalogCards: () => Promise<CatalogData>;
-    levelProgress: number,
+    levelProgress: number;
     userLevel: number
 }

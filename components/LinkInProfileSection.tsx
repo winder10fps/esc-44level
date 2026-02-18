@@ -1,5 +1,5 @@
 import ArrowIcon from "@/assets/icons/ArrowIcon";
-import { COLORS } from "@/constants/ui";
+import { COLORS, TOUCHABLE_OPACITY } from "@/constants/ui";
 import { StyleSheet, TouchableOpacity, TouchableOpacityProps } from "react-native";
 import CustomText from "./CustomText";
 
@@ -12,7 +12,10 @@ type LinkInProfileSectionProps = TouchableOpacityProps & {
 
 const LinkInProfileSection: React.FC<LinkInProfileSectionProps> = ({ text, accent, ...props }) => {
     return (
-        <TouchableOpacity style={styles.base} {...props}>
+        <TouchableOpacity
+            activeOpacity={TOUCHABLE_OPACITY.OPACITY}
+            style={styles.base} {...props}
+        >
             <CustomText variant="big" style={accent && styles.accent}>{text}</CustomText>
             {!accent && <ArrowIcon />}
         </TouchableOpacity>

@@ -1,5 +1,5 @@
 import ArrowIcon from "@/assets/icons/ArrowIcon";
-import { COLORS } from "@/constants/ui";
+import { COLORS, TOUCHABLE_OPACITY } from "@/constants/ui";
 import { router } from "expo-router";
 import { ScrollView, ScrollViewProps, StyleSheet, TouchableOpacity, TouchableOpacityProps, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -16,6 +16,7 @@ const StackScreen: React.FC<StackScreenProps> = ({ title, children, style }) => 
             <View style={styles.header}>
                 <TouchableOpacity
                     style={styles.backButton}
+                    activeOpacity={TOUCHABLE_OPACITY.OPACITY}
                     onPress={() => router.back()}
                 >
                     <ArrowIcon />

@@ -1,4 +1,4 @@
-import { useAuth } from "@/contexts/AuthContext/AuthContext";
+import { useAuth } from "@/contexts/auth";
 import { useCallback, useState } from "react";
 
 export const useUpdateTabs = () => {

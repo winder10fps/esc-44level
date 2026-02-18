@@ -1,7 +1,7 @@
 import { Checkbox } from "expo-checkbox"
 import { StyleSheet, TouchableOpacity, TouchableWithoutFeedback, View, ViewProps } from "react-native"
 import CustomText from "./CustomText"
-import { COLORS } from "@/constants/ui"
+import { COLORS, TOUCHABLE_OPACITY } from "@/constants/ui"
 import { Href, router } from "expo-router"
 
 type CustomCheckboxProps = ViewProps & {
@@ -35,7 +35,10 @@ const CustomCheckbox: React.FC<CustomCheckboxProps> = ({
                     <View style={styles.checkboxTextContainer}>
                         <CustomText variant="micro">{text} </CustomText>
                         {link &&
-                            <TouchableOpacity onPress={() => router.push(link.linkPath)}>
+                            <TouchableOpacity
+                                activeOpacity={TOUCHABLE_OPACITY.OPACITY}
+                                onPress={() => router.push(link.linkPath)}
+                            >
                                 <CustomText
                                     style={styles.linkText}
                                     variant="micro"

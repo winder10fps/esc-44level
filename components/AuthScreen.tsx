@@ -1,5 +1,5 @@
 import ArrowIcon from "@/assets/icons/ArrowIcon";
-import { COLORS } from "@/constants/ui";
+import { COLORS, TOUCHABLE_OPACITY } from "@/constants/ui";
 import { router } from "expo-router";
 import {
     Image,
@@ -28,6 +28,7 @@ const AuthScreen: React.FC<AuthScreenProps> = ({ back, children }) => {
                     {back &&
                         <View style={styles.backArrow}>
                             <TouchableOpacity
+                                activeOpacity={TOUCHABLE_OPACITY.OPACITY}
                                 style={styles.backButton}
                                 onPress={() => router.back()}
                             >

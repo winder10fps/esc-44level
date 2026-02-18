@@ -1,4 +1,4 @@
-import { COLORS, FONT_FAMILIES } from "@/constants/ui";
+import { COLORS, FONT_FAMILIES, TOUCHABLE_OPACITY } from "@/constants/ui";
 import { StyleSheet, TouchableOpacity, TouchableOpacityProps } from "react-native"
 import CustomText from "./CustomText";
 
@@ -38,7 +38,7 @@ const CustomTextButton: React.FC<CustomTextButtonProps> = ({
                 style
             ]}
             onPress={handlePress}
-            activeOpacity={disabled ? 0.5 : 0.2}
+            activeOpacity={disabled ? 0.5 : TOUCHABLE_OPACITY.OPACITY}
             {...props}
         >
             <CustomText

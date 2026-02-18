@@ -1,7 +1,7 @@
 import CustomText from "@/components/CustomText";
 import FullScreenImageModal from "@/components/FullScreenImageModal";
-import { COLORS } from "@/constants/ui";
-import { useAuth } from "@/contexts/AuthContext/AuthContext";
+import { COLORS, TOUCHABLE_OPACITY } from "@/constants/ui";
+import { useAuth } from "@/contexts/auth";
 import { useState } from "react";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
@@ -10,12 +10,15 @@ const UserSection = () => {
 
     const [avatarFullScreen, setAvatarFullScreen] = useState(false)
 
-    const {user, userLevel} = useAuth()
+    const { user, userLevel } = useAuth()
 
     return (
         <View style={styles.sectionContainer}>
             <View style={styles.topElements}>
-                <TouchableOpacity onPress={() => setAvatarFullScreen(true)}>
+                <TouchableOpacity
+                    activeOpacity={TOUCHABLE_OPACITY.OPACITY}
+                    onPress={() => setAvatarFullScreen(true)}
+                >
                     <Image source={{ uri: user?.avatar }} style={styles.avatar} />
                 </TouchableOpacity>
                 <FullScreenImageModal

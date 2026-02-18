@@ -5,10 +5,10 @@ import { useUpdateTabs } from '@/hooks/useUpdateTabs';
 import CustomText from '@/components/CustomText';
 import SectionContainer from '@/components/SectionContainer';
 import NavigationSection from '@/sections/CatalogSections/NavigationSection';
-import { CatalogCardType } from '@/contexts/AuthContext/AuthContextInterfaces';
 import CatalogCard from '@/components/CatalogCard';
-import { useAuth } from '@/contexts/AuthContext/AuthContext';
 import { useEffect, useRef, useState } from 'react';
+import { CatalogCardType } from '../../contexts/auth/types';
+import { useAuth } from '@/contexts/auth';
 
 
 const Catalog = () => {

@@ -1,6 +1,6 @@
 import SearchIcon from "@/assets/icons/SearchIcon";
 import CustomTextInput from "@/components/CustomTextInput";
-import { COLORS } from "@/constants/ui";
+import { COLORS, TOUCHABLE_OPACITY } from "@/constants/ui";
 import { StyleSheet, TouchableOpacity, View } from "react-native"
 
 
@@ -8,7 +8,10 @@ const SearchSection = () => {
     return (
         <View style={styles.searchSection}>
             <CustomTextInput placeholder='Поиск' style={styles.searchInput} />
-            <TouchableOpacity style={styles.iconButton}>
+            <TouchableOpacity
+                style={styles.iconButton}
+                activeOpacity={TOUCHABLE_OPACITY.OPACITY}
+            >
                 <SearchIcon />
             </TouchableOpacity>
         </View>

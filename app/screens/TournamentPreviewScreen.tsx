@@ -2,8 +2,6 @@ import { ActivityIndicator, Image, StyleSheet, Text, View } from 'react-native';
 import StackScreen from '@/components/StackScreen';
 import { useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { useAuth } from '@/contexts/AuthContext/AuthContext';
-import { Tournament } from '@/contexts/AuthContext/AuthContextInterfaces';
 import { COLORS } from '@/constants/ui';
 import CustomText from '@/components/CustomText';
 import SectionContainer from '@/components/SectionContainer';
@@ -13,6 +11,8 @@ import CustomTextButton from '@/components/CustomTextButton';
 import { useForm } from '@/hooks/useForm';
 import { validateTournamentSignIn } from '@/functions/validation';
 import ChampionCupIcon from '@/assets/icons/ChampionCupIcon';
+import { Tournament } from '../../contexts/auth/types';
+import { useAuth } from '@/contexts/auth';
 
 export default function TournamentSignInScreen() {
     const params = useLocalSearchParams();

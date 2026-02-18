@@ -1,10 +1,10 @@
-import { CatalogCardType } from "@/contexts/AuthContext/AuthContextInterfaces"
 import { Image, StyleSheet, TouchableOpacity, TouchableOpacityProps, View } from "react-native"
 import CustomText from "./CustomText";
-import { COLORS } from "@/constants/ui";
+import { COLORS, TOUCHABLE_OPACITY } from "@/constants/ui";
 import CustomTextButton from "./CustomTextButton";
 import OtherIcon from "@/assets/icons/ОtherIcon";
 import { router } from "expo-router";
+import { CatalogCardType } from "../contexts/auth/types";
 
 
 type CatalogCardProps = TouchableOpacityProps & {
@@ -45,7 +45,11 @@ const CatalogCard: React.FC<CatalogCardProps> = ({ card, variant }) => {
         : require('@/assets/images/logo.png');
 
     return (
-        <TouchableOpacity style={styles.cardContainer} onPress={handlePreviewProduct}>
+        <TouchableOpacity
+            style={styles.cardContainer}
+            activeOpacity={TOUCHABLE_OPACITY.OPACITY}
+            onPress={handlePreviewProduct}
+        >
             <Image source={imageSource} style={styles.image} />
             <View style={styles.cardTextContent}>
                 <View style={styles.row}>

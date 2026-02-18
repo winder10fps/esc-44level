@@ -3,7 +3,7 @@ import ClockIcon from "@/assets/icons/ClockIcon";
 import PhoneIcon from "@/assets/icons/PhoneIcon";
 import VKIcon from "@/assets/icons/VKIcon";
 import CustomText from "@/components/CustomText";
-import { COLORS } from "@/constants/ui";
+import { COLORS, TOUCHABLE_OPACITY } from "@/constants/ui";
 import { Linking, StyleSheet, TouchableOpacity, View } from "react-native";
 
 const ContactsSection = () => {
@@ -32,7 +32,11 @@ const ContactsSection = () => {
         <View style={styles.sectionContainer}>
             <CustomText variant="h2">Контакты</CustomText>
             <View style={styles.contactList}>
-                <TouchableOpacity style={styles.contactItem} onPress={handleCall}>
+                <TouchableOpacity
+                    style={styles.contactItem}
+                    activeOpacity={TOUCHABLE_OPACITY.OPACITY}
+                    onPress={handleCall}
+                >
                     <PhoneIcon />
                     <CustomText variant="primary">{number}</CustomText>
                 </TouchableOpacity>
@@ -40,11 +44,19 @@ const ContactsSection = () => {
                     <ClockIcon />
                     <CustomText variant="primary">{workingHours}</CustomText>
                 </View>
-                <TouchableOpacity style={styles.contactItem} onPress={handleVK}>
+                <TouchableOpacity
+                    style={styles.contactItem}
+                    activeOpacity={TOUCHABLE_OPACITY.OPACITY}
+                    onPress={handleVK}
+                >
                     <VKIcon />
                     <CustomText variant="primary">{linkVK}</CustomText>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.contactItem} onPress={handleAddress}>
+                <TouchableOpacity
+                    style={styles.contactItem}
+                    activeOpacity={TOUCHABLE_OPACITY.OPACITY}
+                    onPress={handleAddress}
+                >
                     <AddressIcon />
                     <CustomText variant="primary">{address}</CustomText>
                 </TouchableOpacity>

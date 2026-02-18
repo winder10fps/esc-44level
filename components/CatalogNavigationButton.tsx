@@ -1,6 +1,6 @@
 import { Image, StyleSheet, TouchableOpacity, TouchableOpacityProps } from "react-native"
 import CustomText from "./CustomText";
-import { COLORS } from "@/constants/ui";
+import { COLORS, TOUCHABLE_OPACITY } from "@/constants/ui";
 
 
 type CatalogNavigationButtonProps = TouchableOpacityProps & {
@@ -26,7 +26,11 @@ const CatalogNavigationButton: React.FC<CatalogNavigationButtonProps> = ({ label
     const imageHeight = image.size.height;
 
     return (
-        <TouchableOpacity style={styles.container} onPress={onPress}>
+        <TouchableOpacity
+            style={styles.container}
+            activeOpacity={TOUCHABLE_OPACITY.OPACITY}
+            onPress={onPress}
+        >
             <CustomText variant='h3'>{label}</CustomText>
             <Image
                 source={image.source}

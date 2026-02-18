@@ -6,7 +6,7 @@ import {
     View,
     TouchableOpacity,
 } from 'react-native';
-import { COLORS } from '@/constants/ui';
+import { COLORS, TOUCHABLE_OPACITY } from '@/constants/ui';
 import FullScreenImageModal from '@/components/FullScreenImageModal';
 
 
@@ -38,6 +38,7 @@ const ImagesSection = () => {
             {images.map((image) => (
                 <TouchableOpacity
                     key={image.id}
+                    activeOpacity={TOUCHABLE_OPACITY.OPACITY}
                     onPress={() => openImage(image.source)}
                     style={styles.imageContainer}
                 >
