@@ -9,7 +9,7 @@ export const useUserData = (
     setUser: (user: User | null) => void,
     setAuthError: (error: any) => void
 ) => {
-    const loadUserData = useCallback(async (userId: string) => {
+    const loadUserData = useCallback(async (userId: number) => {
         try {
             console.log('Загрузка данных пользователя с сервера');
             const userData = await MockAPI.fetchUser(userId);

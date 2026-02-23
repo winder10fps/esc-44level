@@ -5,7 +5,12 @@ export const COLORS = {
     PRIMARY: "#FF3B30",
     WHITE: "#f6f6f6",
     GRAY: "#bababa",
-    SEPARATOR: "#474747"
+    SEPARATOR: "#474747",
+
+    // for booking
+    GREEN: '#00B913',
+    BLUE: '#226CAD',
+    DARK_GRAY: '#919191'
 }
 
 // export const COLORS = {

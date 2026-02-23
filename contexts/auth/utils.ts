@@ -1,7 +1,7 @@
 export const delay = (ms: number) => 
     new Promise(resolve => setTimeout(resolve, ms));
 
-export const generateMockToken = (userId: string): string => {
+export const generateMockToken = (userId: number): string => {
     return `mock_jwt_token_${userId}_${Date.now()}`;
 };
 

@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { MockAPI } from '../api';
-import { TournamentsData, CatalogData } from '../types';
+import { TournamentsData, CatalogData, BookingsData } from '../types';
 
 export const useDataFetching = () => {
     const fetchAllTournaments = useCallback(async (): Promise<TournamentsData> => {
@@ -21,8 +21,18 @@ export const useDataFetching = () => {
         }
     }, []);
 
+    const fetchAllBookings = useCallback(async (): Promise<BookingsData> => {
+        try {
+            return await MockAPI.fetchBookings();
+        } catch (error) {
+            console.error('Error fetching catalog:', error);
+            return {};
+        }
+    }, []);
+
     return {
         fetchAllTournaments,
-        fetchAllCatalogCards
+        fetchAllCatalogCards,
+        fetchAllBookings
     };
 };

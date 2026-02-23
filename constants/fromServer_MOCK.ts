@@ -1,8 +1,8 @@
-import { User } from "@/contexts/AuthContext/AuthContextInterfaces";
+import { User } from "@/contexts/auth/types";
 
 export let MOCK_USERS: User[] = [
     {
-        id: '1',
+        id: 1,
         email: 'user@example.com',
         password: 'pass1234',
         name: 'Иван Иванов',
@@ -165,9 +165,40 @@ export let MOCK_FROMCLUB = {
         ]
     },
     booking: {
-        pc1: '19:00', // забронен на 19
-        pc2: '+', // занят
-        pc3: '-', // свободен
-        // ...
+        pc1: {
+            id: 1,
+            title: '1',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        pc2: {
+            id: 2,
+            title: '2',
+            status: 'booking',
+            bookingTime: '13:00',
+            fromId: 1
+        },
+        pc3: {
+            id: 3,
+            title: '3',
+            status: 'busy',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        pc4: {
+            id: 4,
+            title: '4',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        pc5: {
+            id: 5,
+            title: 'PS',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
     }
 }

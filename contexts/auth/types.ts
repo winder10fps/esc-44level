@@ -1,5 +1,5 @@
 export interface User {
-    id: string;
+    id: number;
     email: string;
     password: string;
     name: string;
@@ -100,6 +100,21 @@ export interface CatalogData {
     bar: CatalogCardType[];
 }
 
+
+// Booking
+export interface Computer {
+    id: number;
+    title: string;
+    status: 'free' | 'busy' | 'booking';
+    bookingTime?: string;
+    fromId?: number;
+}
+
+export interface BookingsData {
+    [key: string]: Computer;
+}
+
+
 // Context
 export interface AuthContextType {
     user: User | null;
@@ -117,6 +132,7 @@ export interface AuthContextType {
     clearAuthError: () => void;
     fetchAllTournaments: () => Promise<TournamentsData>;
     fetchAllCatalogCards: () => Promise<CatalogData>;
+    fetchAllBookings: () => Promise<BookingsData>;
     levelProgress: number;
     userLevel: number
 }

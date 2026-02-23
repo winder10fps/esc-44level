@@ -13,7 +13,7 @@ export const useAuthActions = (
     setAuthError: (error: any) => void,
     clearAuthError: () => void,
     resetState: () => void,
-    loadUserData: (userId: string) => Promise<void>
+    loadUserData: (userId: number) => Promise<void>
 ) => {
     const login = useCallback(async (credentials: LoginCredentials): Promise<AuthResponse | null> => {
         try {
@@ -180,7 +180,7 @@ export const useAuthActions = (
             }
 
             const userId = tokenMatch[1];
-            await loadUserData(userId);
+            await loadUserData(parseInt(userId, 10));
 
             setToken(storedToken);
             setIsAuth(true);

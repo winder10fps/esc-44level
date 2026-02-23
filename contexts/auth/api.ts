@@ -1,12 +1,12 @@
 import { MOCK_FROMCLUB, MOCK_USERS } from '@/constants/fromServer_MOCK';
-import { User, LoginCredentials, RegisterData, TournamentsData, CatalogData } from './types';
+import { User, LoginCredentials, RegisterData, TournamentsData, CatalogData, BookingsData } from './types';
 import { delay } from './utils';
 import { API_CONFIG } from './constants';
 
 // Моковые данные (в реальном приложении здесь будут fetch запросы)
 export const MockAPI = {
     // Пользователи
-    async fetchUser(userId: string): Promise<User | null> {
+    async fetchUser(userId: number): Promise<User | null> {
         await delay(API_CONFIG.DELAY_MS);
 
         const foundUser = MOCK_USERS.find(u => u.id === userId);
@@ -24,7 +24,7 @@ export const MockAPI = {
         };
     },
 
-    async updateUser(userId: string, userData: Partial<User>): Promise<User | null> {
+    async updateUser(userId: number, userData: Partial<User>): Promise<User | null> {
         await delay(API_CONFIG.DELAY_MS);
 
         const foundUser = MOCK_USERS.find(u => u.id === userId);
@@ -61,7 +61,7 @@ export const MockAPI = {
         if (userExists) return null;
 
         const newUser: User = {
-            id: `mock_${Date.now()}`,
+            id: 2,
             email: data.email,
             password: data.password,
             name: data.name,
@@ -97,5 +97,10 @@ export const MockAPI = {
     async fetchCatalog(): Promise<CatalogData> {
         await delay(API_CONFIG.DELAY_MS);
         return MOCK_FROMCLUB.catalog as CatalogData;
+    },
+
+    async fetchBookings(): Promise<BookingsData> {
+        await delay(API_CONFIG.DELAY_MS);
+        return MOCK_FROMCLUB.booking as BookingsData;
     }
 };
