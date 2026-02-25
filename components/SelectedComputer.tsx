@@ -66,7 +66,7 @@ const SelectedComputer: React.FC<SelectedComputerProps> = ({ booking, variant, o
     };
     return (
         <View style={styles.container}>
-            <View>
+            <View style={styles.textContainer}>
                 <View style={styles.row}>
                     <View style={[
                         styles.dot,
@@ -119,10 +119,15 @@ const styles = StyleSheet.create({
         height: 12,
         borderRadius: 6,
     },
+    textContainer: {
+        flex: 1, // занимает доступное пространство
+        marginRight: 12, // отступ от кнопки
+    },
     row: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 8
+        gap: 8,
+        flexWrap: 'wrap'
     },
     free: {
         backgroundColor: COLORS.GREEN

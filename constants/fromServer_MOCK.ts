@@ -164,6 +164,7 @@ export let MOCK_FROMCLUB = {
             }
         ]
     },
+
     booking: {
         pc1: {
             id: 1,
@@ -175,14 +176,14 @@ export let MOCK_FROMCLUB = {
         pc2: {
             id: 2,
             title: '2',
-            status: 'booking',
-            bookingTime: '13:00',
-            fromId: 1
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
         },
         pc3: {
             id: 3,
             title: '3',
-            status: 'busy',
+            status: 'free',
             bookingTime: undefined,
             fromId: undefined
         },
@@ -195,10 +196,262 @@ export let MOCK_FROMCLUB = {
         },
         pc5: {
             id: 5,
+            title: '5',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        pc6: {
+            id: 6,
+            title: '6',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        pc7: {
+            id: 7,
+            title: '7',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        pc8: {
+            id: 8,
+            title: '8',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        pc9: {
+            id: 9,
+            title: '9',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        pc10: {
+            id: 10,
+            title: '10',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        pc11: {
+            id: 11,
+            title: '11',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        pc12: {
+            id: 12,
+            title: '12',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        pc13: {
+            id: 13,
+            title: '13',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        pc14: {
+            id: 14,
+            title: '14',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        pc15: {
+            id: 15,
+            title: '15',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        pc16: {
+            id: 16,
+            title: '16',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        pc17: {
+            id: 17,
+            title: '17',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        pc18: {
+            id: 18,
+            title: '18',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        pc19: {
+            id: 19,
+            title: '19',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        pc20: {
+            id: 20,
+            title: '20',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        pc21: {
+            id: 21,
+            title: '21',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        pc22: {
+            id: 22,
+            title: '22',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        pc23: {
+            id: 23,
+            title: '23',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        pc24: {
+            id: 24,
+            title: '24',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        pc25: {
+            id: 25,
+            title: '25',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        pc26: {
+            id: 26,
+            title: '26',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        pc27: {
+            id: 27,
+            title: '27',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        pc28: {
+            id: 28,
+            title: '28',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        pc29: {
+            id: 29,
+            title: '29',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        pc30: {
+            id: 30,
+            title: '30',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        pc31: {
+            id: 31,
+            title: '31',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        pc32: {
+            id: 32,
+            title: '32',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        pc33: {
+            id: 33,
+            title: '33',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        pc34: {
+            id: 34,
+            title: '34',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        pc35: {
+            id: 35,
+            title: '35',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        pc36: {
+            id: 36,
+            title: '36',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        pc37: {
+            id: 37,
+            title: '37',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        pc38: {
+            id: 38,
+            title: '38',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        ps: {
+            id: 39,
             title: 'PS',
             status: 'free',
             bookingTime: undefined,
             fromId: undefined
         },
+        vr: {
+            id: 40,
+            title: 'VR',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        },
+        as: {
+            id: 41,
+            title: 'AS',
+            status: 'free',
+            bookingTime: undefined,
+            fromId: undefined
+        }
     }
 }

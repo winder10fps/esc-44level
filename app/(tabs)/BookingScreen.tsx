@@ -13,10 +13,10 @@ import CustomText from '@/components/CustomText';
 import ComputerInBooking from '@/components/ComputerInBooking';
 import SectionContainer from '@/components/SectionContainer';
 import SelectedComputer from '@/components/SelectedComputer';
-import ComputerColorCaption from '@/components/ComputerColorCaption';
 import { useAuth } from '@/contexts/auth';
 import BookingsPanel from '@/components/BookingsPanel';
 import { useUpdateTabs } from '@/hooks/useUpdateTabs';
+import ClubMap from '@/components/ClubMap';
 
 const PANEL_CLOSED_HEIGHT = 80;
 
@@ -148,25 +148,7 @@ const Booking = () => {
                         </CustomText>
                     </View>
 
-                    <SectionContainer style={[styles.clubMapSection, { marginTop: 24, marginBottom: 32 }]}>
-                        <View style={styles.clubMap}>
-                            {computerButtons[0]}
-                            {computerButtons[1]}
-                            {computerButtons[2]}
-                            {computerButtons[3]}
-                            {computerButtons[4]}
-                        </View>
-                        <View style={styles.computerColors}>
-                            <View>
-                                <ComputerColorCaption text='свободные' />
-                                <ComputerColorCaption text='забронированные' />
-                            </View>
-                            <View>
-                                <ComputerColorCaption text='занятые' />
-                                <ComputerColorCaption text='выбранные' />
-                            </View>
-                        </View>
-                    </SectionContainer>
+                    <ClubMap computerButtons={computerButtons} />
 
                     {selectedComputers.length > 0 && (
                         <SectionContainer>
@@ -204,18 +186,11 @@ const styles = StyleSheet.create({
         marginLeft: 16,
         marginTop: 8
     },
-    clubMapSection: {},
-    clubMap: {
-        gap: 8
-    },
+
     selectedList: {
         gap: 16
     },
-    computerColors: {
-        flexDirection: 'row',
-        gap: 16,
-        marginTop: 24
-    },
+
 })
 
 
