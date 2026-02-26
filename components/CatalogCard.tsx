@@ -1,10 +1,10 @@
-import { Image, StyleSheet, TouchableOpacity, TouchableOpacityProps, View } from "react-native"
-import CustomText from "./CustomText";
-import { COLORS, TOUCHABLE_OPACITY } from "@/constants/ui";
-import CustomTextButton from "./CustomTextButton";
 import OtherIcon from "@/assets/icons/ОtherIcon";
+import { COLORS, TOUCHABLE_OPACITY } from "@/constants/ui";
 import { router } from "expo-router";
+import { Image, StyleSheet, TouchableOpacity, TouchableOpacityProps, View } from "react-native";
 import { CatalogCardType } from "../contexts/auth/types";
+import CustomText from "./CustomText";
+import CustomTextButton from "./CustomTextButton";
 
 
 type CatalogCardProps = TouchableOpacityProps & {
@@ -95,14 +95,14 @@ const CatalogCard: React.FC<CatalogCardProps> = ({ card, variant }) => {
 const styles = StyleSheet.create({
     cardContainer: {
         backgroundColor: COLORS.CARD_BACKGROUND,
-        borderRadius: 25,
+        borderRadius: 16,
         flex: 1
     },
     image: {
         width: '100%',
         height: 120,
-        borderTopLeftRadius: 25,
-        borderTopRightRadius: 25
+        borderTopLeftRadius: 16,
+        borderTopRightRadius: 16
     },
     cardTextContent: {
         padding: 8

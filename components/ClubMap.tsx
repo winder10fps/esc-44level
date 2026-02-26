@@ -1,15 +1,15 @@
-import { StyleSheet, View } from "react-native"
+import { StyleSheet, View, ViewProps } from "react-native"
 import SectionContainer from "./SectionContainer"
 import ComputerColorCaption from "./ComputerColorCaption"
 import { COLORS } from "@/constants/ui"
 import CustomText from "./CustomText"
 
-type ClubMapProps = {
+type ClubMapProps = ViewProps & {
     computerButtons: React.JSX.Element[]
 }
 
 
-const ClubMap: React.FC<ClubMapProps> = ({ computerButtons }) => {
+const ClubMap: React.FC<ClubMapProps> = ({ computerButtons, children }) => {
 
     return (
         <SectionContainer style={[styles.clubMapSection, { marginTop: 24, marginBottom: 32 }]}>
@@ -132,13 +132,14 @@ const ClubMap: React.FC<ClubMapProps> = ({ computerButtons }) => {
             <View style={styles.computerColors}>
                 <View>
                     <ComputerColorCaption text='свободные' />
-                    <ComputerColorCaption text='забронированные' />
+                    <ComputerColorCaption text='бронь' />
                 </View>
                 <View>
                     <ComputerColorCaption text='занятые' />
                     <ComputerColorCaption text='выбранное' />
                 </View>
             </View>
+            {children}
         </SectionContainer>
     )
 }
@@ -156,7 +157,7 @@ const styles = StyleSheet.create({
     },
     computerColors: {
         flexDirection: 'row',
-        gap: 16,
+        gap: 32,
         marginTop: 24
     },
 

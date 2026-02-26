@@ -18,7 +18,7 @@ const RootLayoutContent = () => {
 
     const [showSplash, setShowSplash] = useState(true);
 
-    // Управляем сплеш-скрином
+    // Управление сплеш скрином
     useEffect(() => {
         if (showSplash) {
             SplashScreen.preventAutoHideAsync();
@@ -27,7 +27,7 @@ const RootLayoutContent = () => {
         }
     }, [showSplash]);
 
-    // Скрываем сплеш когда все готово
+    // Скрытие сплеш когда все готово
     useEffect(() => {
         if (fontsLoaded && !isLoading) {
             setTimeout(() => setShowSplash(false), 500);

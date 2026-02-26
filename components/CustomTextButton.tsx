@@ -1,5 +1,5 @@
 import { COLORS, FONT_FAMILIES, TOUCHABLE_OPACITY } from "@/constants/ui";
-import { StyleSheet, TouchableOpacity, TouchableOpacityProps } from "react-native"
+import { StyleSheet, TouchableOpacity, TouchableOpacityProps } from "react-native";
 import CustomText from "./CustomText";
 
 
@@ -59,7 +59,7 @@ const CustomTextButton: React.FC<CustomTextButtonProps> = ({
 
 const styles = StyleSheet.create({
     base: {
-        borderRadius: 25,
+        borderRadius: 16,
         alignSelf: 'baseline'
     },
     primary: {

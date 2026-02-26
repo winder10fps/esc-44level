@@ -11,7 +11,7 @@ const SectionContainer: React.FC<SectionContainerProps> = ({ children, style }) 
             paddingHorizontal: 8,
             marginHorizontal: 8,
             backgroundColor: COLORS.SECTION_BACKGROUND,
-            borderRadius: 25,
+            borderRadius: 16,
             
         }, style]}>
             {children}

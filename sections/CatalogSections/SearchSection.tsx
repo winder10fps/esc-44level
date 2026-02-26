@@ -1,7 +1,7 @@
 import SearchIcon from "@/assets/icons/SearchIcon";
 import CustomTextInput from "@/components/CustomTextInput";
 import { COLORS, TOUCHABLE_OPACITY } from "@/constants/ui";
-import { StyleSheet, TouchableOpacity, View } from "react-native"
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 
 
 const SearchSection = () => {
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     iconButton: {
         backgroundColor: COLORS.CARD_BACKGROUND,
         width: 56,
-        borderRadius: 25,
+        borderRadius: 16,
         justifyContent: 'center',
         alignItems: 'center'
     },

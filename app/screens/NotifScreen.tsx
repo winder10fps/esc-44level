@@ -1,10 +1,10 @@
-import { FlatList, ListRenderItem, RefreshControl, ScrollView, StyleSheet, View } from 'react-native';
-import StackScreen from '@/components/StackScreen';
 import CustomText from '@/components/CustomText';
+import StackScreen from '@/components/StackScreen';
 import { COLORS } from '@/constants/ui';
-import { useUpdateTabs } from '@/hooks/useUpdateTabs';
-import { Notif } from '../../contexts/auth/types';
 import { useAuth } from '@/contexts/auth';
+import { useUpdateTabs } from '@/hooks/useUpdateTabs';
+import { FlatList, ListRenderItem, RefreshControl, ScrollView, StyleSheet, View } from 'react-native';
+import { Notif } from '../../contexts/auth/types';
 
 export default function NotifScreen() {
     const { user } = useAuth()
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
         padding: 16,
         backgroundColor: COLORS.SECTION_BACKGROUND,
         marginTop: 16,
-        borderRadius: 25,
+        borderRadius: 16,
     },
     messageText: {
         color: COLORS.GRAY,

@@ -1,18 +1,18 @@
-import { ActivityIndicator, Image, StyleSheet, Text, View } from 'react-native';
+import ChampionCupIcon from '@/assets/icons/ChampionCupIcon';
+import CustomCheckbox from '@/components/CustomCheckbox';
+import CustomText from '@/components/CustomText';
+import CustomTextButton from '@/components/CustomTextButton';
+import CustomTextInput from '@/components/CustomTextInput';
+import SectionContainer from '@/components/SectionContainer';
 import StackScreen from '@/components/StackScreen';
+import { COLORS } from '@/constants/ui';
+import { useAuth } from '@/contexts/auth';
+import { validateTournamentSignIn } from '@/functions/validation';
+import { useForm } from '@/hooks/useForm';
 import { useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { COLORS } from '@/constants/ui';
-import CustomText from '@/components/CustomText';
-import SectionContainer from '@/components/SectionContainer';
-import CustomTextInput from '@/components/CustomTextInput';
-import CustomCheckbox from '@/components/CustomCheckbox';
-import CustomTextButton from '@/components/CustomTextButton';
-import { useForm } from '@/hooks/useForm';
-import { validateTournamentSignIn } from '@/functions/validation';
-import ChampionCupIcon from '@/assets/icons/ChampionCupIcon';
+import { ActivityIndicator, Image, StyleSheet, Text, View } from 'react-native';
 import { Tournament } from '../../contexts/auth/types';
-import { useAuth } from '@/contexts/auth';
 
 export default function TournamentSignInScreen() {
     const params = useLocalSearchParams();
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     },
     tournamentInfoSection: {
         backgroundColor: COLORS.CARD_BACKGROUND,
-        borderRadius: 25,
+        borderRadius: 16,
         padding: 16
     },
     checkbox: {

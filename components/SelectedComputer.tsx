@@ -1,10 +1,10 @@
-import { StyleSheet, View } from "react-native"
-import CustomText from "./CustomText";
 import { COLORS } from "@/constants/ui";
-import CustomTextButton from "./CustomTextButton";
-import CustomModal from "./CustomModal";
 import { useState } from "react";
+import { StyleSheet, View } from "react-native";
 import BookingTimeModal from "./BookingTimeModal";
+import CustomModal from "./CustomModal";
+import CustomText from "./CustomText";
+import CustomTextButton from "./CustomTextButton";
 
 
 type SelectedComputerProps = {
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     container: {
         padding: 16,
         backgroundColor: COLORS.CARD_BACKGROUND,
-        borderRadius: 25,
+        borderRadius: 16,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between'

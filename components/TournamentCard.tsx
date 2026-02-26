@@ -1,8 +1,8 @@
-import { Image, StyleSheet, View } from "react-native"
-import CustomText from "./CustomText";
-import CustomTextButton from "./CustomTextButton";
 import { COLORS } from "@/constants/ui";
 import { router } from "expo-router";
+import { Image, StyleSheet, View } from "react-native";
+import CustomText from "./CustomText";
+import CustomTextButton from "./CustomTextButton";
 
 type TournamentCardProps = {
     id: number;
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     cardContainer: {
         padding: 16,
         backgroundColor: COLORS.CARD_BACKGROUND,
-        borderRadius: 25,
+        borderRadius: 16,
         marginTop: 24
     },
     topRow: {

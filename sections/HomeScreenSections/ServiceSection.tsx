@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.SECTION_BACKGROUND,
         paddingVertical: 24,
         paddingHorizontal: 8,
-        borderRadius: 25,
+        borderRadius: 16,
         marginTop: 24
     },
     serviceRow: {
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.CARD_BACKGROUND,
         paddingVertical: 16,
         paddingHorizontal: 4,
-        borderRadius: 25,
+        borderRadius: 16,
     },
     textInService: {
         textAlign: 'center'

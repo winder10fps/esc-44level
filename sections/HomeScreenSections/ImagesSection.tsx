@@ -1,13 +1,13 @@
+import FullScreenImageModal from '@/components/FullScreenImageModal';
+import { COLORS, TOUCHABLE_OPACITY } from '@/constants/ui';
 import { useState } from 'react';
 import {
     Dimensions,
     Image,
     StyleSheet,
-    View,
     TouchableOpacity,
+    View,
 } from 'react-native';
-import { COLORS, TOUCHABLE_OPACITY } from '@/constants/ui';
-import FullScreenImageModal from '@/components/FullScreenImageModal';
 
 
 const ImagesSection = () => {
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
         left: 1,
         right: 1,
         bottom: 1,
-        borderRadius: 25,
+        borderRadius: 16,
         backgroundColor: 'rgba(0, 0, 0, 0.2)'
 
     }

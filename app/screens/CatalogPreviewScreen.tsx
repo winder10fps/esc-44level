@@ -1,12 +1,12 @@
-import { ActivityIndicator, Image, StyleSheet, TouchableOpacity, View } from 'react-native';
-import StackScreen from '@/components/StackScreen';
-import { router, useLocalSearchParams } from 'expo-router';
-import { useEffect, useState } from 'react';
-import { COLORS, TOUCHABLE_OPACITY } from '@/constants/ui';
-import FullScreenImageModal from '@/components/FullScreenImageModal';
 import CustomText from '@/components/CustomText';
 import CustomTextButton from '@/components/CustomTextButton';
+import FullScreenImageModal from '@/components/FullScreenImageModal';
+import StackScreen from '@/components/StackScreen';
+import { COLORS, TOUCHABLE_OPACITY } from '@/constants/ui';
 import { useAuth } from '@/contexts/auth';
+import { router, useLocalSearchParams } from 'expo-router';
+import { useEffect, useState } from 'react';
+import { ActivityIndicator, Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { CatalogCardType } from '../../contexts/auth/types';
 
 export default function CatalogPreviewScreen() {
@@ -157,14 +157,14 @@ const styles = StyleSheet.create({
     image: {
         width: '100%',
         height: 190,
-        borderRadius: 25,
+        borderRadius: 16,
         marginTop: 16
     },
     sectionContainer: {
         paddingHorizontal: 8,
         paddingVertical: 24,
         backgroundColor: COLORS.SECTION_BACKGROUND,
-        borderRadius: 25
+        borderRadius: 16
 
     },
     heading: {

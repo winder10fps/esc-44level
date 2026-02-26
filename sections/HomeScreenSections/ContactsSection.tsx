@@ -72,8 +72,8 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.SECTION_BACKGROUND,
         paddingVertical: 24,
         paddingHorizontal: 8,
-        borderTopLeftRadius: 25,
-        borderTopRightRadius: 25,
+        borderTopLeftRadius: 16,
+        borderTopRightRadius: 16,
         marginTop: 24
     },
     contactList: {

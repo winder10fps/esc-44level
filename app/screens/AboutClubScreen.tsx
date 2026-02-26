@@ -1,9 +1,9 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import StackScreen from '@/components/StackScreen';
 import CustomText from '@/components/CustomText';
-import { COLORS, TOUCHABLE_OPACITY } from '@/constants/ui';
 import FullScreenImageModal from '@/components/FullScreenImageModal';
+import StackScreen from '@/components/StackScreen';
+import { COLORS, TOUCHABLE_OPACITY } from '@/constants/ui';
 import { useState } from 'react';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 
 export default function AboutClubScreen() {
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 16,
         paddingVertical: 24,
         backgroundColor: COLORS.SECTION_BACKGROUND,
-        borderRadius: 25,
+        borderRadius: 16,
         gap: 16
     },
     paragraph: {
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     image: {
         width: '100%',
         height: 200,
-        borderRadius: 25,
+        borderRadius: 16,
         marginVertical: 24
     },
     bottomImages: {

@@ -1,6 +1,6 @@
-import { Image, StyleSheet, TouchableOpacity, TouchableOpacityProps } from "react-native"
-import CustomText from "./CustomText";
 import { COLORS, TOUCHABLE_OPACITY } from "@/constants/ui";
+import { Image, StyleSheet, TouchableOpacity, TouchableOpacityProps } from "react-native";
+import CustomText from "./CustomText";
 
 
 type CatalogNavigationButtonProps = TouchableOpacityProps & {
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
         flex: 1,
         backgroundColor: COLORS.CARD_BACKGROUND,
-        borderRadius: 25,
+        borderRadius: 16,
         padding: 16,
         position: 'relative'
     },

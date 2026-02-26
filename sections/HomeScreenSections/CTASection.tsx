@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: COLORS.BACKGROUND,
         padding: 24,
-        borderRadius: 25,
+        borderRadius: 16,
         position: 'relative'
     },
     levelLabel: {

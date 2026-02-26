@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import {
-    View,
-    StyleSheet,
-    TouchableOpacity,
-} from 'react-native';
+import ArrowIcon from '@/assets/icons/ArrowIcon';
 import CustomModal from '@/components/CustomModal';
 import CustomText from '@/components/CustomText';
 import { COLORS } from '@/constants/ui';
-import ArrowIcon from '@/assets/icons/ArrowIcon';
+import React, { useState } from 'react';
+import {
+    StyleSheet,
+    TouchableOpacity,
+    View,
+} from 'react-native';
 import CustomTextButton from './CustomTextButton';
 
 interface TimePickerModalProps {
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
         paddingVertical: 16,
         paddingHorizontal: 20,
         backgroundColor: COLORS.SECTION_BACKGROUND,
-        borderRadius: 25,
+        borderRadius: 16,
         minWidth: 70,
         alignItems: 'center',
     },

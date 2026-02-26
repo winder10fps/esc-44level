@@ -170,8 +170,8 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0,
         backgroundColor: COLORS.SECTION_BACKGROUND,
-        borderTopLeftRadius: 25,
-        borderTopRightRadius: 25,
+        borderTopLeftRadius: 16,
+        borderTopRightRadius: 16,
         paddingTop: 24,
     },
     panelHandle: {

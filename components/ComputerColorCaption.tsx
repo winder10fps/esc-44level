@@ -3,7 +3,7 @@ import { StyleSheet, View } from "react-native"
 import CustomText from "./CustomText"
 
 type ComputerColorCaptionProps = {
-    text: 'свободные' | 'забронированные' | 'занятые' | 'выбранное'
+    text: 'свободные' | 'бронь' | 'занятые' | 'выбранное'
 }
 
 const ComputerColorCaption: React.FC<ComputerColorCaptionProps> = ({text}) => {
@@ -11,7 +11,7 @@ const ComputerColorCaption: React.FC<ComputerColorCaptionProps> = ({text}) => {
         <View style={styles.container}>
             <View style={[styles.dot, 
                 text === 'свободные' && {backgroundColor: COLORS.GREEN},
-                text === 'забронированные' && {backgroundColor: COLORS.BLUE},
+                text === 'бронь' && {backgroundColor: COLORS.BLUE},
                 text === 'занятые' && {backgroundColor: COLORS.PRIMARY},
                 text === 'выбранное' && {backgroundColor: COLORS.DARK_GRAY},
             ]} />

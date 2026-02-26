@@ -1,11 +1,11 @@
-import { ActivityIndicator, FlatList, ListRenderItem, StyleSheet, View } from 'react-native';
-import StackScreen from '@/components/StackScreen';
-import { useEffect, useState } from 'react';
 import CustomText from '@/components/CustomText';
-import { COLORS } from '@/constants/ui';
+import StackScreen from '@/components/StackScreen';
 import TournamentCard from '@/components/TournamentCard';
-import { Tournament } from '../../contexts/auth/types';
+import { COLORS } from '@/constants/ui';
 import { useAuth } from '@/contexts/auth';
+import { useEffect, useState } from 'react';
+import { ActivityIndicator, FlatList, ListRenderItem, StyleSheet, View } from 'react-native';
+import { Tournament } from '../../contexts/auth/types';
 
 type TournamentScreenProps = {
     refreshKey: number;
@@ -98,12 +98,12 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.SECTION_BACKGROUND,
         paddingHorizontal: 8,
         paddingVertical: 24,
-        borderRadius: 25
+        borderRadius: 16
     },
     tournamentContainer: {
         padding: 16,
         backgroundColor: COLORS.CARD_BACKGROUND,
-        borderRadius: 25,
+        borderRadius: 16,
         marginBottom: 16
     },
     noTournamentsContainer: {

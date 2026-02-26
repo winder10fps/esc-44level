@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     },
     contentContainer: {
         padding: 16,
-        borderRadius: 25,
+        borderRadius: 16,
         backgroundColor: COLORS.SECTION_BACKGROUND,
         width: "90%"
     }

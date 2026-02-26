@@ -1,6 +1,6 @@
-import { StyleSheet, TextInput, TextInputProps, View } from "react-native"
-import CustomText from "./CustomText";
 import { COLORS } from "@/constants/ui";
+import { StyleSheet, TextInput, TextInputProps, View } from "react-native";
+import CustomText from "./CustomText";
 
 type CustomTextInputProps = TextInputProps & {
     variant?: 'default' | 'confirm';
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     },
     input: {
         padding: 16,
-        borderRadius: 25,
+        borderRadius: 16,
         backgroundColor: COLORS.CARD_BACKGROUND,
         color: COLORS.WHITE,
         borderWidth: 1,

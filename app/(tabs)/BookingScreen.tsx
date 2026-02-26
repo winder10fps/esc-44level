@@ -148,16 +148,16 @@ const Booking = () => {
                         </CustomText>
                     </View>
 
-                    <ClubMap computerButtons={computerButtons} />
+                    <ClubMap computerButtons={computerButtons} >
 
-                    {selectedComputers.length > 0 && (
-                        <SectionContainer>
-                            <CustomText variant='h2'>Выбранное</CustomText>
-                            <View style={styles.selectedList}>
-                                {selectedComputersInSection}
-                            </View>
-                        </SectionContainer>
-                    )}
+                        {selectedComputers.length > 0 && (
+                            <SectionContainer style={styles.selectedContainer}>
+                                <View style={styles.selectedList}>
+                                    {selectedComputersInSection}
+                                </View>
+                            </SectionContainer>
+                        )}
+                    </ClubMap>
                 </ScrollView>
             </SafeAreaView>
 
@@ -190,7 +190,11 @@ const styles = StyleSheet.create({
     selectedList: {
         gap: 16
     },
-
+    selectedContainer: {
+        marginHorizontal: 0,
+        paddingHorizontal: 0,
+        marginTop: 16
+    }
 })
 
 

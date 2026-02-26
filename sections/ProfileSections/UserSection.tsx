@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: COLORS.SECTION_BACKGROUND,
         paddingVertical: 16,
-        borderRadius: 25,
+        borderRadius: 16,
     },
     elementNumber: {
         fontSize: 24,

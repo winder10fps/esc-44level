@@ -3,10 +3,10 @@ import CustomTextButton from "@/components/CustomTextButton";
 import { COLORS } from "@/constants/ui";
 import { useAuth } from "@/contexts/auth";
 // В TournamentSection.tsx временно замените импорт на:
-import { Tournament } from "../../contexts/auth/types";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
 import { ActivityIndicator, FlatList, ListRenderItem, StyleSheet, View } from "react-native";
+import { Tournament } from "../../contexts/auth/types";
 
 
 type TournamentSectionProps = {
@@ -99,13 +99,13 @@ const styles = StyleSheet.create({
         paddingTop: 24,
         paddingBottom: 8,
         paddingHorizontal: 8,
-        borderRadius: 25,
+        borderRadius: 16,
         marginBottom: 16,
     },
     tournamentContainer: {
         padding: 16,
         backgroundColor: COLORS.CARD_BACKGROUND,
-        borderRadius: 25,
+        borderRadius: 16,
         marginBottom: 16
     },
     noTournamentsContainer: {
