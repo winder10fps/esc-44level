@@ -36,9 +36,7 @@ const HeaderSection = () => {
                 onPress={goProfile}
             >
                 <Image
-                    source={{
-                        uri: user?.avatar
-                    }}
+                    source={require('@/assets/images/logo.png')}
                     style={styles.avatar}
                 />
                 <CustomText variant="h3">{user?.name}</CustomText>

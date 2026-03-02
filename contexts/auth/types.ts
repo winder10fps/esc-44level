@@ -3,10 +3,9 @@ export interface User {
     email: string;
     password: string;
     name: string;
-    avatar?: string;
     hours: number;
     notifs: any[];
-    booking: any[]
+    booking: any[];
 }
 
 export interface LoginCredentials {
@@ -100,7 +99,6 @@ export interface CatalogData {
     bar: CatalogCardType[];
 }
 
-
 // Booking
 export interface Computer {
     id: number;
@@ -114,8 +112,8 @@ export interface BookingsData {
     [key: string]: Computer;
 }
 
-
 // Context
+// Добавить в интерфейс AuthContextType новые методы
 export interface AuthContextType {
     user: User | null;
     token: string | null;
@@ -133,6 +131,12 @@ export interface AuthContextType {
     fetchAllTournaments: () => Promise<TournamentsData>;
     fetchAllCatalogCards: () => Promise<CatalogData>;
     fetchAllBookings: () => Promise<BookingsData>;
+    createBooking: (userId: number, computerId: number, bookingTime: string) => Promise<{ success: boolean; computer?: Computer; error?: string }>;
+    cancelBooking: (userId: number, computerId: number) => Promise<{ success: boolean; computer?: Computer; error?: string }>;
+    checkBookingAvailability: (computerId: number, time: string) => Promise<{ available: boolean; message?: string }>;
+    refreshBookings: () => Promise<BookingsData>;
+    signUpForTournament: (userId: number, tournamentId: number, teamName: string, teamPlayers: string) => Promise<{ success: boolean; error?: string }>;
+    refreshTournaments: () => Promise<TournamentsData>;
     levelProgress: number;
-    userLevel: number
+    userLevel: number;
 }

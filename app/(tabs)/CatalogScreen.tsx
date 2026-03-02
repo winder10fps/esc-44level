@@ -1,64 +1,83 @@
 import { ActivityIndicator, FlatList, ListRenderItem, RefreshControl, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { COLORS } from '../../constants/ui';
-import { useUpdateTabs } from '@/hooks/useUpdateTabs';
 import CustomText from '@/components/CustomText';
 import SectionContainer from '@/components/SectionContainer';
 import NavigationSection from '@/sections/CatalogSections/NavigationSection';
 import CatalogCard from '@/components/CatalogCard';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import { CatalogCardType } from '../../contexts/auth/types';
 import { useAuth } from '@/contexts/auth';
 
-
 const Catalog = () => {
-    const { refreshing, onRefresh } = useUpdateTabs(); // заменить на обновление каталога
     const { fetchAllCatalogCards } = useAuth();
+    
     const [computerCards, setComputerCards] = useState<CatalogCardType[]>([]);
     const [psCards, setPsCards] = useState<CatalogCardType[]>([]);
     const [barCards, setBarCards] = useState<CatalogCardType[]>([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [refreshingCatalog, setRefreshingCatalog] = useState(false);
 
     const computersRef = useRef<View | null>(null);
     const psRef = useRef<View | null>(null);
     const barRef = useRef<View | null>(null);
     const scrollViewRef = useRef<ScrollView>(null);
 
-    useEffect(() => {
-        const loadCards = async () => {
-            try {
-                setLoading(true);
-                const cardsData = await fetchAllCatalogCards();
-                setComputerCards(cardsData.computers);
-                setPsCards(cardsData.PSAndVR);
-                setBarCards(cardsData.bar);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        loadCards();
+    const loadCards = useCallback(async () => {
+        try {
+            const cardsData = await fetchAllCatalogCards();
+            setComputerCards(cardsData.computers);
+            setPsCards(cardsData.PSAndVR);
+            setBarCards(cardsData.bar);
+        } catch (error) {
+            console.log('Error loading catalog:', error);
+        } finally {
+            setLoading(false);
+        }
     }, [fetchAllCatalogCards]);
 
+    useEffect(() => {
+        loadCards();
+    }, [loadCards]);
+
+    const handleRefresh = useCallback(async () => {
+        setRefreshingCatalog(true);
+        try {
+            await loadCards();
+        } catch (error) {
+            console.log('Error refreshing catalog:', error);
+        } finally {
+            setRefreshingCatalog(false);
+        }
+    }, [loadCards]);
+
     const renderComputerOrPsCards: ListRenderItem<CatalogCardType> = ({ item }) => (
-        <CatalogCard
-            card={item} variant='computerOrPs'
-        />
+        <CatalogCard card={item} variant='computerOrPs' />
     );
+
     const renderBarCards: ListRenderItem<CatalogCardType> = ({ item }) => (
-        <CatalogCard
-            card={item} variant='bar'
-        />
+        <CatalogCard card={item} variant='bar' />
     );
 
     const scrollToSection = (ref: React.RefObject<View | null>) => {
         if (ref.current && scrollViewRef.current) {
             ref.current.measure((...args) => {
-                const pageY = args[5]
+                const pageY = args[5];
                 scrollViewRef.current?.scrollTo({ y: pageY, animated: true });
             });
         }
     };
+
+    if (loading) {
+        return (
+            <SafeAreaView style={styles.container}>
+                <StatusBar barStyle={"light-content"} />
+                <View style={styles.loadingContainer}>
+                    <ActivityIndicator size={'large'} color={COLORS.PRIMARY} />
+                </View>
+            </SafeAreaView>
+        );
+    }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -68,8 +87,8 @@ const Catalog = () => {
                 showsVerticalScrollIndicator={false}
                 refreshControl={
                     <RefreshControl
-                        refreshing={refreshing}
-                        onRefresh={onRefresh}
+                        refreshing={refreshingCatalog}
+                        onRefresh={handleRefresh}
                         colors={[COLORS.PRIMARY]}
                         progressBackgroundColor={COLORS.CARD_BACKGROUND}
                     />
@@ -88,8 +107,8 @@ const Catalog = () => {
                     <View ref={computersRef} collapsable={false}>
                         <SectionContainer>
                             <CustomText variant='h2' style={styles.sectionHeading}>Компьютеры</CustomText>
-                            {loading ? (
-                                <ActivityIndicator size={'small'} color={COLORS.GRAY} />
+                            {computerCards.length === 0 ? (
+                                <CustomText style={styles.emptyText}>Нет доступных компьютеров</CustomText>
                             ) : (
                                 <FlatList
                                     data={computerCards}
@@ -107,8 +126,8 @@ const Catalog = () => {
                     <View ref={psRef} collapsable={false}>
                         <SectionContainer>
                             <CustomText variant='h2' style={styles.sectionHeading}>PS5 & VR</CustomText>
-                            {loading ? (
-                                <ActivityIndicator size={'small'} color={COLORS.GRAY} />
+                            {psCards.length === 0 ? (
+                                <CustomText style={styles.emptyText}>Нет доступных PlayStation и VR</CustomText>
                             ) : (
                                 <FlatList
                                     data={psCards}
@@ -126,8 +145,8 @@ const Catalog = () => {
                     <View ref={barRef} collapsable={false}>
                         <SectionContainer>
                             <CustomText variant='h2' style={styles.sectionHeading}>Бар</CustomText>
-                            {loading ? (
-                                <ActivityIndicator size={'small'} color={COLORS.GRAY} />
+                            {barCards.length === 0 ? (
+                                <CustomText style={styles.emptyText}>Нет доступных товаров в баре</CustomText>
                             ) : (
                                 <FlatList
                                     data={barCards}
@@ -144,8 +163,7 @@ const Catalog = () => {
             </ScrollView>
         </SafeAreaView>
     );
-}
-
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -165,8 +183,17 @@ const styles = StyleSheet.create({
     },
     sectionHeading: {
         marginBottom: 16
+    },
+    loadingContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    emptyText: {
+        color: COLORS.GRAY,
+        textAlign: 'center',
+        padding: 20,
     }
-})
-
+});
 
 export default Catalog;

@@ -19,11 +19,11 @@ const UserSection = () => {
                     activeOpacity={TOUCHABLE_OPACITY.OPACITY}
                     onPress={() => setAvatarFullScreen(true)}
                 >
-                    <Image source={{ uri: user?.avatar }} style={styles.avatar} />
+                    <Image  source={require('@/assets/images/logo.png')} style={styles.avatar} />
                 </TouchableOpacity>
                 <FullScreenImageModal
                     visible={avatarFullScreen}
-                    imageSource={{ uri: user?.avatar }}
+                    imageSource={require('@/assets/images/logo.png')}
                     onClose={() => { setAvatarFullScreen(false) }}
                 />
                 <CustomText style={styles.userName}>{user?.name}</CustomText>

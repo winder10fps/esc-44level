@@ -6,7 +6,6 @@ export let MOCK_USERS: User[] = [
         email: 'user@example.com',
         password: 'pass1234',
         name: 'Иван Иванов',
-        avatar: 'https://i.pravatar.cc/150?img=1',
         hours: 1039,
         notifs: [
             { id: 1, title: 'Добро пожаловать!', message: 'Вы успешно зарегистрировались', read: false },
@@ -87,7 +86,7 @@ export let MOCK_FROMCLUB = {
             {
                 id: 1,
                 heading: 'ПК 1-10',
-                photo: 'https://static.insales-cdn.com/images/articles/1/1550/1418766/api.jpg',
+                photo: '',
                 line: '1',
                 specifications: {
                     processor: '11400F',
@@ -109,7 +108,7 @@ export let MOCK_FROMCLUB = {
             {
                 id: 2,
                 heading: 'ПК 11-20',
-                photo: 'https://static.insales-cdn.com/images/articles/1/1550/1418766/api.jpg',
+                photo: '',
                 line: '2',
                 specifications: {
                     processor: '11400F',

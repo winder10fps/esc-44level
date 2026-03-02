@@ -1,13 +1,12 @@
 import { COLORS } from "@/constants/ui";
 import { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, ViewProps } from "react-native";
 import BookingTimeModal from "./BookingTimeModal";
 import CustomModal from "./CustomModal";
 import CustomText from "./CustomText";
 import CustomTextButton from "./CustomTextButton";
 
-
-type SelectedComputerProps = {
+type SelectedComputerProps = ViewProps & {
     booking: {
         id: number;
         title: string;
@@ -16,54 +15,59 @@ type SelectedComputerProps = {
         fromId: number | undefined;
         isSelected: boolean;
     };
-    variant: 'selected' | 'booked'
-    onBookingConfirm?: (id: number) => void;
+    variant: 'selected' | 'booked';
+    onBookingConfirm?: (id: number, time: string) => void;
+    onCancelBooking?: (id: number) => void;
 }
 
-const SelectedComputer: React.FC<SelectedComputerProps> = ({ booking, variant, onBookingConfirm }) => {
-    const title = booking.title
-    const status = booking.status
-    const bookingTime = booking.bookingTime
+const SelectedComputer: React.FC<SelectedComputerProps> = ({
+    booking,
+    variant,
+    onBookingConfirm,
+    onCancelBooking,
+}) => {
+    const title = booking.title;
+    const status = booking.status;
+    const bookingTime = booking.bookingTime;
 
     const getFullTitle = () => {
-        const isNumber = Number(title)
+        const isNumber = Number(title);
         if (!isNaN(isNumber))
-            return `ПК №${title}`
+            return `ПК №${title}`;
         else {
             switch (title) {
-                case 'PS': return 'Playstation 5'
-                case 'VR': return 'Вирт. реальность HTC VIVE'
-                case 'AS': return 'Автосимулятор T500 RS PS 4 PRO'
-                default: return title
+                case 'PS': return 'Playstation 5';
+                case 'VR': return 'Вирт. реальность HTC VIVE';
+                case 'AS': return 'Автосимулятор T500 RS PS 4 PRO';
+                default: return title;
             }
         }
-    }
+    };
 
-    const captionText =
-        status === 'free' && 'Свободен' ||
-        status === 'booking' && `Забронрован на ${bookingTime}`
+    const captionText = status === 'free' ? 'Свободен' :
+        status === 'booking' ? `Забронирован на ${bookingTime}` : '';
 
     const [isCancellationModalOpen, setIsCancellationModalOpen] = useState(false);
-
-    const handleBooking = () => {
-        setIsTimePickerOpen(true)
-    }
-
-    const handleCancellation = () => {
-        setIsCancellationModalOpen(false)
-        console.log('cancellation successfull');
-
-    }
-
     const [isTimePickerOpen, setIsTimePickerOpen] = useState(false);
 
-    const handleTimeConfirm = (time: string) => {
-        console.log('time:', time);
-        // логика бронирования на выбранное время
-        if (onBookingConfirm) {
-            onBookingConfirm(booking.id);
+    const handleBooking = () => {
+        setIsTimePickerOpen(true);
+    };
+
+    const handleCancellation = () => {
+        setIsCancellationModalOpen(false);
+        if (onCancelBooking) {
+            onCancelBooking(booking.id);
         }
     };
+
+    const handleTimeConfirm = (time: string) => {
+        console.log('Выбрано время:', time);
+        if (onBookingConfirm) {
+            onBookingConfirm(booking.id, time);
+        }
+    };
+
     return (
         <View style={styles.container}>
             <View style={styles.textContainer}>
@@ -101,9 +105,8 @@ const SelectedComputer: React.FC<SelectedComputerProps> = ({ booking, variant, o
                 onConfirm={handleTimeConfirm}
             />
         </View>
-    )
-}
-
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -112,7 +115,8 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        marginTop: 16
     },
     dot: {
         width: 12,
@@ -120,8 +124,8 @@ const styles = StyleSheet.create({
         borderRadius: 6,
     },
     textContainer: {
-        flex: 1, // занимает доступное пространство
-        marginRight: 12, // отступ от кнопки
+        flex: 1,
+        marginRight: 12,
     },
     row: {
         flexDirection: 'row',
@@ -144,7 +148,6 @@ const styles = StyleSheet.create({
         gap: 16,
         marginTop: 24
     }
-})
-
+});
 
 export default SelectedComputer;

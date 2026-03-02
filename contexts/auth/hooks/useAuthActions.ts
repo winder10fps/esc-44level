@@ -1,4 +1,3 @@
-// hooks/useAuthActions.ts
 import { useCallback } from 'react';
 import { LoginCredentials, RegisterData, ResetPasswordCredentials, AuthResponse } from '../types';
 import { MockAPI } from '../api';
@@ -89,7 +88,7 @@ export const useAuthActions = (
                 refreshToken,
             };
         } catch {
-            console.error('Ошибка регистрации');
+            console.log('Ошибка регистрации');
             setAuthError({
                 message: 'Ошибка регистрации',
                 field: 'general'
@@ -107,7 +106,7 @@ export const useAuthActions = (
             resetState();
             console.log('Успешный выход');
         } catch {
-            console.error('Ошибка выхода');
+            console.log('Ошибка выхода');
         } finally {
             setIsLoading(false);
         }
@@ -147,7 +146,7 @@ export const useAuthActions = (
                 refreshToken,
             };
         } catch {
-            console.error('Ошибка обновления пароля');
+            console.log('Ошибка обновления пароля');
             setAuthError({
                 message: 'Ошибка обновления пароля',
                 field: 'general'
@@ -187,7 +186,7 @@ export const useAuthActions = (
             console.log('Авторизация восстановлена');
 
         } catch {
-            console.error('Ошибка проверки авторизации');
+            console.log('Ошибка проверки авторизации');
             await TokenStorage.clearTokens();
             resetState();
         } finally {

@@ -25,13 +25,15 @@ interface BookingsPanelProps {
         bookingTime: string | undefined;
         fromId: number | undefined;
         isSelected: boolean;
-    }[]
+    }[];
+    onCancelBooking: (id: number) => void;
 }
 
 const AnimatedArrowIcon = Animated.createAnimatedComponent(ArrowIcon);
 
 const BookingsPanel: React.FC<BookingsPanelProps> = ({
-    myBookings
+    myBookings,
+    onCancelBooking
 }) => {
     const [isOpen, setIsOpen] = useState(false);
     const panelAnimation = useRef(new Animated.Value(PANEL_CLOSED_HEIGHT)).current;
@@ -57,7 +59,7 @@ const BookingsPanel: React.FC<BookingsPanelProps> = ({
             })
         ]).start();
         setIsOpen(true);
-    }
+    };
 
     const closePanel = () => {
         Animated.parallel([
@@ -79,7 +81,7 @@ const BookingsPanel: React.FC<BookingsPanelProps> = ({
         ]).start(() => {
             setIsOpen(false);
         });
-    }
+    };
 
     const togglePanel = () => {
         if (isOpen) {
@@ -87,7 +89,7 @@ const BookingsPanel: React.FC<BookingsPanelProps> = ({
         } else {
             openPanel();
         }
-    }
+    };
 
     return (
         <>
@@ -140,9 +142,11 @@ const BookingsPanel: React.FC<BookingsPanelProps> = ({
                             ) : (
                                 myBookings.map(booking => (
                                     <SelectedComputer
+                                        style={{ marginBottom: 16 }}
                                         key={booking.id}
                                         booking={booking}
                                         variant='booked'
+                                        onCancelBooking={onCancelBooking}
                                     />
                                 ))
                             )}

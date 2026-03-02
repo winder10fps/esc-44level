@@ -8,11 +8,10 @@ type ClubMapProps = ViewProps & {
     computerButtons: React.JSX.Element[]
 }
 
-
 const ClubMap: React.FC<ClubMapProps> = ({ computerButtons, children }) => {
 
     return (
-        <SectionContainer style={[styles.clubMapSection, { marginTop: 24, marginBottom: 32 }]}>
+        <SectionContainer style={{ marginTop: 24, marginBottom: 32 }}>
 
             <View style={styles.clubMap}>
                 <CustomText variant="secondary" style={{position: 'absolute', top: 204, left: 8, color: COLORS.GRAY}}>Вход</CustomText>
@@ -144,9 +143,7 @@ const ClubMap: React.FC<ClubMapProps> = ({ computerButtons, children }) => {
     )
 }
 
-
 const styles = StyleSheet.create({
-    clubMapSection: {},
     clubMap: {
         position: 'relative',
         width: '100%',
@@ -253,6 +250,5 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.DARK_GRAY
     }
 })
-
 
 export default ClubMap;

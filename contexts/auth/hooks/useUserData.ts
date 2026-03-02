@@ -1,4 +1,3 @@
-// hooks/useUserData.ts
 import { useCallback } from 'react';
 import { User } from '../types';
 import { MockAPI } from '../api';
@@ -46,7 +45,7 @@ export const useUserData = (
                 console.log('Не удалось обновить данные пользователя');
             }
         } catch {
-            console.error('Ошибка обновления данных');
+            console.log('Ошибка обновления данных');
         }
     }, [user?.id, setUser]);
 
@@ -68,7 +67,7 @@ export const useUserData = (
             console.log('Данные пользователя обновлены на сервере');
             return updatedUser;
         } catch {
-            console.error('Ошибка обновления пользователя');
+            console.log('Ошибка обновления пользователя');
             return null;
         }
     }, [user, setUser]);

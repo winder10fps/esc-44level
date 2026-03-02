@@ -50,7 +50,13 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const {
         fetchAllTournaments,
         fetchAllCatalogCards,
-        fetchAllBookings
+        fetchAllBookings,
+        createBooking,
+        cancelBooking,
+        checkBookingAvailability,
+        refreshBookings,
+        signUpForTournament,
+        refreshTournaments
     } = useDataFetching();
 
     useEffect(() => {
@@ -74,6 +80,12 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         fetchAllTournaments,
         fetchAllCatalogCards,
         fetchAllBookings,
+        createBooking,
+        cancelBooking,
+        checkBookingAvailability,
+        refreshBookings,
+        signUpForTournament,
+        refreshTournaments,
         userLevel,
         levelProgress
     };
