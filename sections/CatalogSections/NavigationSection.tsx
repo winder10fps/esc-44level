@@ -1,5 +1,5 @@
 import CatalogNavigationButton from "@/components/CatalogNavigationButton";
-import { router } from "expo-router";
+import { useChangePage } from "@/functions/navigation";
 import { StyleSheet, View } from "react-native"
 
 type NavigationSectionProps = {
@@ -13,6 +13,8 @@ const NavigationSection = ({
     onNavigateToPS,
     onNavigateToBar
 }: NavigationSectionProps) => {
+    const { changePageTo } = useChangePage()
+
     return (
         <View style={styles.navigateSection}>
             <CatalogNavigationButton
@@ -65,7 +67,7 @@ const NavigationSection = ({
             <View style={styles.navigateDoubleRow}>
                 <CatalogNavigationButton
                     label='Цены и акции'
-                    onPress={() => router.push('/screens/PricesScreen')}
+                    onPress={() => changePageTo('/screens/PricesScreen')}
                     image={{
                         source: require('@/assets/images/catalog/rouble.png'),
                         position: {
@@ -80,7 +82,7 @@ const NavigationSection = ({
                 />
                 <CatalogNavigationButton
                     label='Игры'
-                    onPress={() => router.push('/screens/GamesScreen')}
+                    onPress={() => changePageTo('/screens/GamesScreen')}
                     image={{
                         source: require('@/assets/images/catalog/dice.png'),
                         position: {

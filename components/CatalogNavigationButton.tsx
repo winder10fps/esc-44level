@@ -24,7 +24,7 @@ const CatalogNavigationButton: React.FC<CatalogNavigationButtonProps> = ({ label
     const imageBottomPosition = image.position.bottom;
     const imageWidth = image.size.width;
     const imageHeight = image.size.height;
-
+    
     return (
         <TouchableOpacity
             style={styles.container}
